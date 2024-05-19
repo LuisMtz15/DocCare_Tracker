@@ -5,8 +5,10 @@ import AppScreens
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,7 +37,8 @@ import com.example.ejemplosapis.viewModel.AppViewModel
 
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("StateFlowValueCalledInComposition")
+
+    @SuppressLint("StateFlowValueCalledInComposition", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
@@ -48,6 +52,8 @@ class MainActivity : ComponentActivity() {
                     val viewModel = AppViewModel(UserServiceApi.instance, application)
                     val token = viewModel.jwtToken.value
                     viewModel.checarToken(ChecarToken(token))
+                    val imageView: ImageView = findViewById(R.drawable.logo_doccare)
+                    imageView.setImageResource(R.drawable.logo_doccare)
                     MainScreen(viewModel)
                 }
             }
@@ -91,6 +97,9 @@ fun LoadingScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Indicador de progreso lineal (animación de carga)
+        Image(painter = painterResource(id = R.drawable.logo_doccare),
+            contentDescription ="Logo de DocCare_Tracker" )
+        Spacer(modifier = Modifier.height(16.dp))
         Text(text = "DocCare Tracker", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(36.dp))
         LinearProgressIndicator(
