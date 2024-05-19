@@ -1,0 +1,472 @@
+Para agregar un usuario 
+
+Post -> http://localhost:3000/users/usuarios/
+
+{
+  "nombre": "Juan",
+  "apellido_paterno": "Pérez",
+  "apellido_materno": "Gómez",
+  "email": "juan@example.com",
+  "password": "password123",
+  "fecha_nacimiento": "1990-05-15",
+  "rol": "Usuario"
+}
+
+Para agregar detalle de un Usuario
+Post -> http://localhost:3000/users/usuarios/detalles/
+
+{
+  "usuario_id": 2,
+  "altura": 170,
+  "peso": 70,
+  "circunferencia_abdominal": 85,
+  "clave_unica": "abcd1234",
+  "sexo": "Masculino"
+}
+
+
+
+
+Para agregar detalle de un Doctor
+
+POST -> http://localhost:3000/users/usuarios/detallesdoc/1
+
+
+Para jalar datos de un usuario
+
+GET -> http://localhost:3000/users/usuarios/datos/3 <- Este es el usuario id
+
+
+
+Para Hacer un Login 
+
+POST -> http://localhost:3000/users/usuarios/login
+
+{
+  "mail": "juann@example.com",
+  "password": "password1234"
+}
+
+
+Para actulizar infromación
+
+  Detalles Usuario
+
+  PUT -> http://localhost:3000/users/usuarios/modificar/
+
+  {
+    "usuario_id": 1,
+    "nombre": "Juan",
+    "apellidop": "Pérez",
+    "apellidom": "Gómez",
+    "correo": "luis.ghjk@gmail.com",
+    "peso": 700,
+    "altura": 175,
+    "cintura": 800,
+    "clave": "nuevaclave123"
+  }
+
+   Detalles Doctor
+
+  PUT -> http://localhost:3000/users/usuarios/modificardoc/
+
+  {
+    "usuario_id": 1,
+    "nombre": "Juan",
+    "apellidop": "Pérez",
+    "apellidom": "Gómez",
+    "correo": "luis.ghjk@gmail.com"
+  }
+
+  Modificar password
+
+  PUT -> http://localhost:3000/users/usuarios/modificar/pswd
+
+  {
+    "usuario_id": 1,
+    "password": "nuevaclave456"
+  }
+
+
+--------------------------------------------------------------
+
+Añadir Alimentos
+
+POST -> http://localhost:3000/data/alimentos/agregar
+
+{
+  "usuario_id": 1,
+  "nombre": "Pollo a la parrilla",
+  "tipo_porcion": "Grande",
+  "fecha": "2024-04-30"
+}
+
+Eliminar Alimentos
+
+DELETE -> http://localhost:3000/data/alimentos/eliminar/1
+
+
+
+
+Editar Alimentos
+
+PUT -> http://localhost:3000/data/alimentos/modificar
+
+{
+  "id_alimento": 1,
+  "nombre": "Pollo a la parrilla con verduras",
+  "tipo_porcion": "Grande"
+}
+
+
+
+Consultar Alimentos
+
+GET -> http://localhost:3000/data/alimentos/leer/3
+
+
+-------------------------------------------------------
+
+Añadir Actividad
+
+POST -> http://localhost:3000/data/Actividad/agregar
+
+{
+  "usuario_id": 8,
+  "tipo_actividad": "Aeróbicos",
+  "emocion_actividad": "Feliz",
+  "intensidad_actividad": "Baja",
+  "fecha": "2024-05-01",
+  "duracion": 30
+}
+
+
+Modificar Actividad 
+
+PUT -> http://localhost:3000/data/Actividad/modificar
+
+{
+  "id_actividad": 1,
+  "tipo_actividad": "Equilibrio",
+  "emocion_actividad": "Triste",
+  "intensidad_actividad": "Moderada",
+  "duracion": 450
+}
+
+Leer Actividad 
+
+GET -> http://localhost:3000/data/Actividad/leer/8
+
+Eliminar Activiad
+
+DELETE -> http://localhost:3000/data/Actividad/eliminar/1
+
+
+
+--------------------------------------------------------------------
+
+Agregar sueño
+
+POST -> http://localhost:3000/data/sueno/agregar
+
+{
+  "usuario_id": 1,
+  "pastilla": "SI",
+  "calidad_sueño": "Normal",
+  "horas": 8,
+  "fecha": "2024-05-05"
+}
+
+
+
+Modificar Sueño 
+
+PUT -> http://localhost:3000/data/sueno/modificar
+
+{
+  "id_sueño": 7,
+  "pastilla": "SI",
+  "calidad_sueño": "Normal",
+  "horas": 3
+}
+
+
+Leer Sueño 
+
+GET -> http://localhost:3000/data/sueno/leer/8
+
+Eliminar Sueño
+
+DELETE -> http://localhost:3000/data/sueno/eliminar/1
+
+--------------------------------------------------------------------
+
+Agregar Ansiedad
+
+POST -> http://localhost:3000/data/ansiedad/agregar
+
+{
+  "usuario_id": 8,
+  "sintoma": "Náuseas",
+  "intensidad": "Leve",
+  "hora": "09:00 AM",
+  "fecha": "2024-05-10",
+  "nota": "Sentí nauseas durante el dia"
+}
+
+
+
+
+Modificar Ansiedad 
+
+PUT -> http://localhost:3000/data/ansiedad/modificar
+
+{
+  "id_ansiedad": 1,
+  "sintoma": "Dolor de cabeza",
+  "intensidad": "Severa",
+  "hora": "10:00 AM",
+  "nota": "El dolor de cabeza se intensificó durante la mañana."
+}
+
+
+
+Leer Ansiedad 
+
+GET -> http://localhost:3000/data/ansiedad/leer/8
+
+Eliminar Ansiedad
+
+DELETE -> http://localhost:3000/data/ansiedad/eliminar/1
+
+
+--------------------------------------------------------------------
+
+Agregar Pastillas
+
+POST -> http://localhost:3000/data/pastillas/agregar
+
+{
+  "usuario_id": 8,
+  "nombre": "Ibuprofeno",
+  "dosis": "600 mg",
+  "tiempo": "Temporal",
+  "periodo": 12,
+  "fecha": "2024-05-10"
+}
+
+
+
+
+
+Modificar Pastillas 
+
+PUT -> http://localhost:3000/data/pastillas/modificar
+
+{
+  "id_pastilla": 1,
+  "nombre": "Paracetamol Forte",
+  "dosis": "1000 mg",
+  "tiempo": "Temporal",
+  "periodo": 4
+}
+
+
+
+
+Leer Pastillas 
+
+GET -> http://localhost:3000/data/pastillas/leer/8
+
+Eliminar Pastillas
+
+DELETE -> http://localhost:3000/data/pastillas/eliminar/1
+
+
+
+--------------------------------------------------------------------
+
+Agregar Presion
+
+POST -> http://localhost:3000/data/presion/agregar
+
+{
+  "usuario_id": 1,
+  "sistolica": 120,
+  "diastolica": 80,
+  "hora": "08:00 AM",
+  "emocion": "Mareado",
+  "fecha": "2024-05-10"
+}
+
+
+
+
+
+
+Modificar Presion 
+
+PUT -> http://localhost:3000/data/presion/modificar
+
+{
+  "id_presion": 1,
+  "sistolica": 125,
+  "diastolica": 82,
+  "hora": "09:30 AM",
+  "emocion": "Presionado"
+}
+
+
+Leer Presion 
+
+GET -> http://localhost:3000/data/presion/leer/8
+
+Eliminar Presion
+
+DELETE -> http://localhost:3000/data/presion/eliminar/1
+
+
+---------------------------------------------------
+
+Pacientes
+
+GET -> http://localhost:3000/datadoc/datos_pacientes
+
+
+---------------------------------------------------
+
+Tablas
+
+
+Roles
+GET -> http://localhost:3000/tablas/roles
+
+Sexos
+GET -> http://localhost:3000/tablas/sexos
+
+TiposPorciones
+GET -> http://localhost:3000/tablas/tiposporciones
+
+EmocionesActividades
+GET -> http://localhost:3000/tablas/emocionesactividades
+
+TiposActividades
+GET -> http://localhost:3000/tablas/tiposactividades
+
+IntensidadesActividades
+GET -> http://localhost:3000/tablas/intensidadesactividades
+
+PastillasDormir
+GET -> http://localhost:3000/tablas/pastillasdormir
+
+CalidadesSueño
+GET -> http://localhost:3000/tablas/calidadessueño
+
+SintomasAnsiedad
+GET -> http://localhost:3000/tablas/sintomasansiedad
+
+IntensidadesAnsiedad
+GET -> http://localhost:3000/tablas/intensidadesansiedad
+
+TiempoPastillas
+GET -> http://localhost:3000/tablas/tiempopastillas
+
+PeriodoPastillas
+GET -> http://localhost:3000/tablas/periodopastillas
+
+EmocionesPresion
+GET -> http://localhost:3000/tablas/emocionespresion
+
+
+
+
+------------------------------------------------------
+Filtros
+
+Alimentos
+
+GET -> http://localhost:3000/data/alimentos/filtrar/2024-04-30
+
+
+Activiad
+
+GET -> http://localhost:3000/data/Actividad/filtrar/2024-05-01
+
+
+Sueño
+
+GET -> http://localhost:3000/data/sueno/filtrar/2024-05-05
+
+
+Ansiedad
+
+GET -> http://localhost:3000/data/ansiedad/filtrar/2024-05-10
+
+
+Pastillas
+
+GET -> http://localhost:3000/data/pastillas/filtrar/2024-05-10
+
+
+Presion
+
+GET -> http://localhost:3000/data/presion/filtrar/2024-05-10
+
+
+------------------------------------------------------
+
+
+
+
+Query de pruebas Postgre
+
+
+SELECT * FROM public."Usuarios";
+
+SELECT * FROM public."DetallesUsuarios";
+
+SELECT * FROM public."DetallesDoctor";
+
+SELECT * FROM public."TiposPorciones
+
+SELECT * FROM public."Alimentos";
+
+SELECT * FROM public."Roles";
+
+SELECT * FROM public."TiposActividades";
+
+SELECT * FROM public."EmocionesActividades";
+
+SELECT * FROM public."ActividadesFisicas";
+
+SELECT * FROM public."CalidadesSueño";
+
+SELECT * FROM public."Sueño";
+
+SELECT * FROM public."Ansiedad";
+
+SELECT * FROM public."IntensidadesAnsiedad";
+
+SELECT * FROM public."SintomasAnsiedad";
+
+SELECT * FROM public."Pastillas";
+
+SELECT * FROM public."PeriodoPastillas";
+
+SELECT * FROM public."TiempoPastillas";
+
+SELECT * FROM public."PresionArterial";
+
+SELECT * FROM public."EmocionesPresion";
+
+
+
+Link de las pruebas con web service en la nube
+
+https://apis-bmzj.onrender.com/
+
+
+Para Checar el token 
+
+GET -> http://localhost:3000/users/usuarios/token
+
