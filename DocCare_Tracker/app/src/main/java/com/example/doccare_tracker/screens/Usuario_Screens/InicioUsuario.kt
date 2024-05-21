@@ -99,6 +99,7 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                 alimentosResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.setNohayAlimentos(false)
                             viewModel.setLeerAlimentosResult(null)
                             navController.navigate(route = AppScreens.Alimentos.route)
 
@@ -116,6 +117,7 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                 actividadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.setNohayActividades(false)
                             viewModel.setLeerActividadesResult(null)
                             navController.navigate(route = AppScreens.Actividad.route)
 
@@ -133,6 +135,7 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                 ansiedadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.setNohayAnsiedades(false)
                             viewModel.setLeerAnsiedadResult(null)
                             navController.navigate(route = AppScreens.Ansiedad.route)
 
@@ -150,6 +153,7 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                 presionResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.setNohayPresiones(false)
                             viewModel.setLeerPresionesResult(null)
                             navController.navigate(route = AppScreens.Presion.route)
 
@@ -167,6 +171,7 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                 sueñoResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.setNohaySuenos(false)
                             viewModel.setLeerSueñoResult(null)
                             navController.navigate(route = AppScreens.Sueño.route)
 
@@ -184,6 +189,7 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                 pastillasResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.setNohayPastillas(false)
                             viewModel.setLeerPastillasResult(null)
                             navController.navigate(route = AppScreens.Pastillas.route)
 

@@ -193,7 +193,6 @@ fun MiniMenu(
     }
 
     if (exitodatos) {
-        println("HOLAAAAAA")
         navController.navigate(route = AppScreens.resumenUser.route)
     }
 }
