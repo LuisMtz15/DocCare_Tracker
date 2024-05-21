@@ -81,7 +81,8 @@ fun Modificar_actividad(navController: NavHostController, viewModel: AppViewMode
                     buttonText = "Restablecer Valores", size = 8, onClickAction = {viewModel.setFiltroActividadesResult(null)
                         fecha.value = ""
                         text.value = "No hay actividades registradas"
-                        const.value = true})
+                        const.value = true
+                        actividades_user.value = actividadeslist})
             }
 
             Spacer(modifier = Modifier.padding(bottom = 14.dp))

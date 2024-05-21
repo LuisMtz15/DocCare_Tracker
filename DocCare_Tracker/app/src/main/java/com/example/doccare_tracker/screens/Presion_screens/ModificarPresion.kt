@@ -82,7 +82,8 @@ fun Modificar_presion(navController: NavHostController, viewModel: AppViewModel)
                     buttonText = "Restablecer Valores", size = 8, onClickAction = {viewModel.setFiltroPresionesResult(null)
                         fecha.value = ""
                         text.value = "No hay Registros de presiones registrados"
-                        const.value = true})
+                        const.value = true
+                        presiones_user.value = presioneslist})
 
             }
 

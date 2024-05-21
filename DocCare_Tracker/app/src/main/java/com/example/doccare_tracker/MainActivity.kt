@@ -5,7 +5,6 @@ import AppScreens
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -52,8 +51,8 @@ class MainActivity : ComponentActivity() {
                     val viewModel = AppViewModel(UserServiceApi.instance, application)
                     val token = viewModel.jwtToken.value
                     viewModel.checarToken(ChecarToken(token))
-                    val imageView: ImageView = findViewById(R.drawable.logo_doccare)
-                    imageView.setImageResource(R.drawable.logo_doccare)
+                    //val imageView: ImageView = findViewById(R.drawable.logo_doccare)
+                    //imageView.setImageResource(R.drawable.logo_doccare)
                     MainScreen(viewModel)
                 }
             }

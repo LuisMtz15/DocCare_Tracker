@@ -81,7 +81,8 @@ fun Modificar_Sueño(navController: NavHostController, viewModel: AppViewModel) 
                     buttonText = "Restablecer Valores", size = 8, onClickAction = {viewModel.setFiltroSueñoResult(null)
                         fecha.value = ""
                         text.value = "No hay registros de sueño"
-                        const.value = true})
+                        const.value = true
+                        sueños_user.value = sueñoslist})
 
             }
 

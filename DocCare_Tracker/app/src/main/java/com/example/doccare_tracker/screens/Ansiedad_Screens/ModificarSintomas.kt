@@ -83,7 +83,8 @@ fun Modificar_sintomas(navController: NavHostController, viewModel: AppViewModel
                     buttonText = "Restablecer Valores", size = 8, onClickAction = {viewModel.setFiltroAnsiedadResult(null)
                         fecha.value = ""
                         text.value = "No hay Síntomas registrados"
-                        const.value = true})
+                        const.value = true
+                        ansiedades_user.value = ansiedadeslist})
 
             }
 

@@ -78,7 +78,8 @@ fun Modificar_pastillas(navController: NavHostController, viewModel: AppViewMode
                     buttonText = "Restablecer Valores", size = 8, onClickAction = {viewModel.setFiltroPastillasResult(null)
                         fecha.value = ""
                         text.value = "No hay Pastillas registradas"
-                        const.value = true})
+                        const.value = true
+                        pastillas_user.value = pastillaslist})
 
             }
 

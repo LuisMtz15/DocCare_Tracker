@@ -84,7 +84,8 @@ fun Modificar_alimentos(navController: NavHostController, viewModel: AppViewMode
                     buttonText = "Restablecer Valores", size = 8, onClickAction = {viewModel.setFiltroAlimentosResult(null)
                     fecha.value = ""
                     text.value = "No hay alimentos registrados"
-                    const.value = true})
+                    const.value = true
+                    alimentos_user.value = alimentosvm})
 
             }
 
