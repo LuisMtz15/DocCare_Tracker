@@ -39,7 +39,8 @@ exports.LeerPresion = async (req, res) => {
                     as: 'emocion'
                 }
             ],
-            attributes: ['id', 'sistolica', 'diastolica', 'hora', 'fecha']
+            attributes: ['id', 'sistolica', 'diastolica', 'hora', 'fecha'],
+            order: [['fecha', 'DESC']]
         });
 
         if (!presion || presion.length === 0) {
@@ -61,6 +62,7 @@ exports.LeerPresion = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
 
 exports.ModificarPresion = async (req, res) => {
     try {

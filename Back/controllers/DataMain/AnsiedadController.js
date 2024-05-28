@@ -50,7 +50,8 @@ exports.LeerAnsiedad = async (req, res) => {
                     as: 'intensidad'
                 }
             ],
-            attributes: ['id', 'fecha', 'hora', 'nota']
+            attributes: ['id', 'fecha', 'hora', 'nota'],
+            order: [['fecha', 'DESC']]
         });
 
         if (!Ansiedades || Ansiedades.length === 0) {
@@ -72,6 +73,7 @@ exports.LeerAnsiedad = async (req, res) => {
         res.status(400).json({ error: error.message });
         }
 };
+
 
 exports.ModificarAnsiedad = async (req, res) => {
     try {

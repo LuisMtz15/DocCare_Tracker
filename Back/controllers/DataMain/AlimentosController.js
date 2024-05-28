@@ -34,7 +34,8 @@ exports.LeerAlimentos = async (req, res) => {
         attributes: ['tipo'], 
         as: 'tipo_porcion',
       },
-      attributes: ['id', 'nombre', 'fecha'], 
+      attributes: ['id', 'nombre', 'fecha'],
+      order: [['fecha', 'DESC']],
     });
 
     if (!alimentos || alimentos.length === 0) {
@@ -53,6 +54,7 @@ exports.LeerAlimentos = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 
 exports.ModificarAlimentos = async (req, res) => {

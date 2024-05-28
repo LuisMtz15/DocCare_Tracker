@@ -58,7 +58,8 @@ exports.LeerActividad = async (req, res) => {
                 as: 'intensidad_actividad'
             }
         ],
-        attributes: ['id', 'fecha', 'duracion']
+        attributes: ['id', 'fecha', 'duracion'],
+        order: [['fecha', 'DESC']]
     });
 
     if (!Actividades || Actividades.length === 0) {
@@ -79,6 +80,7 @@ exports.LeerActividad = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 
 exports.ModificarActividad = async (req, res) => {

@@ -50,7 +50,8 @@ exports.LeerSueño = async (req, res) => {
                     as: 'calidad'
                 }
             ],
-            attributes: ['id', 'fecha', 'horas', 'horaDormir', 'horaDespertar']
+            attributes: ['id', 'fecha', 'horas', 'horaDormir', 'horaDespertar'],
+            order: [['fecha', 'DESC']]
         });
 
         if (!Sueños || Sueños.length === 0) {
@@ -69,10 +70,11 @@ exports.LeerSueño = async (req, res) => {
 
         res.status(200).json(SueñosFormateados);
 
-        } catch (error) {
+    } catch (error) {
         res.status(400).json({ error: error.message });
-        }
+    }
 };
+
 
 
 exports.ModificarSueño = async (req, res) => {

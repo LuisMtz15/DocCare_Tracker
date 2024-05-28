@@ -47,7 +47,8 @@ exports.LeerPastillas = async (req, res) => {
                     as: 'periodo'
                 }
             ],
-            attributes: ['id', 'nombre', 'dosis', 'fecha']
+            attributes: ['id', 'nombre', 'dosis', 'fecha'],
+            order: [['fecha', 'DESC']]
         });
 
         if (!pastilla || pastilla.length === 0) {
@@ -69,6 +70,7 @@ exports.LeerPastillas = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
 
 exports.ModificarPastillas = async (req, res) => {
     try {
