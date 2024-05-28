@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.doccare_tracker.model.Ansiedad.AgregarAnsiedad
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.ejemplosapis.viewModel.AppViewModel
 
 
@@ -169,6 +170,14 @@ fun Agregar_Ansiedad(navController: NavHostController, viewModel: AppViewModel) 
                 agregarAnsiedadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaAnsiedadSintomas(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaAnsiedadIntensidades(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se agregó el síntoma ccorrectamente",
                                 duration = SnackbarDuration.Short,

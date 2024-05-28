@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Pastillas.AgregarPastillas
 import com.example.ejemplosapis.viewModel.AppViewModel
 
@@ -156,6 +157,14 @@ fun Agregar_Pastillas(navController: NavHostController, viewModel: AppViewModel)
                 agregarpastillasResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaPastillasTiempo(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaPastillasMedicamento(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se agregó la pastilla ccorrectamente",
                                 duration = SnackbarDuration.Short,

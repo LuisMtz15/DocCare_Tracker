@@ -34,16 +34,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Pastillas.ModificarPastillas
 import com.example.ejemplosapis.viewModel.AppViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
 fun Editar_pastilla_especifica(navController: NavHostController, viewModel: AppViewModel) {
 
     //Basicas
     val showLogoutDialog = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val usuario_id = viewModel.usuario_id.value
 
 
     //Iniciales
@@ -170,6 +172,14 @@ fun Editar_pastilla_especifica(navController: NavHostController, viewModel: AppV
                 editarpastillaResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaPastillasTiempo(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaPastillasMedicamento(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se hizo el cambio con éxito",
                                 duration = SnackbarDuration.Short,
@@ -238,6 +248,10 @@ fun Editar_pastilla_especifica(navController: NavHostController, viewModel: AppV
                 eliminarpastillaResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaPastillasTiempo(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaPastillasMedicamento(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             snackbarHostState.showSnackbar(
                                 message = "Se eliminó la pastilla con éxito",
                                 duration = SnackbarDuration.Short,

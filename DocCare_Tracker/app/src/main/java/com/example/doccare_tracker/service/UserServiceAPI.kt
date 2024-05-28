@@ -27,6 +27,19 @@ import com.example.doccare_tracker.model.Ansiedad.ModificarAnsiedad
 import com.example.doccare_tracker.model.Ansiedad.ModificarAnsiedadRespuesta
 import com.example.doccare_tracker.model.Ansiedad.Tablas.IntensidadAnsiedad
 import com.example.doccare_tracker.model.Ansiedad.Tablas.SintomasAnsiedad
+import com.example.doccare_tracker.model.Graphs.Actividades.IntensidadActividadesResult
+import com.example.doccare_tracker.model.Graphs.Actividades.TipoActividadesResult
+import com.example.doccare_tracker.model.Graphs.Alimentos.BarrasGraphResult
+import com.example.doccare_tracker.model.Graphs.Alimentos.DonaGraphResult
+import com.example.doccare_tracker.model.Graphs.Ansiedad.IntensidadAnsiedadesResult
+import com.example.doccare_tracker.model.Graphs.Ansiedad.SintomasResult
+import com.example.doccare_tracker.model.Graphs.DataGraph
+import com.example.doccare_tracker.model.Graphs.Pastillas.MedicamentosResult
+import com.example.doccare_tracker.model.Graphs.Pastillas.TiempoPastillasResult
+import com.example.doccare_tracker.model.Graphs.Presion.DiastolicasResult
+import com.example.doccare_tracker.model.Graphs.Presion.SistolicasResult
+import com.example.doccare_tracker.model.Graphs.Sueño.HorasResult
+import com.example.doccare_tracker.model.Graphs.Sueño.PastillaSuenoResult
 import com.example.doccare_tracker.model.Informacion_Personal.Contraseñas.ModificarContraseña
 import com.example.doccare_tracker.model.Informacion_Personal.Contraseñas.ModificarContraseñaRespuesta
 import com.example.doccare_tracker.model.Informacion_Personal.Doctor.ModificarDatosDoctor
@@ -294,6 +307,54 @@ interface UserServiceApi {
     @POST("datadoc/datos_pacientes/{clave}")
     suspend fun jalarUsuariosDoc(@Header("auth") token: String?, @Path("clave") clave: String) : JalarUsuariosDocRespuesta
 
+
+    //Graficas
+
+    //Alimentos
+    @POST("/data/alimentos/fechas")
+    suspend fun fechasAlimentos(@Header("auth") token: String?, @Body user: DataGraph) : BarrasGraphResult
+
+    @POST("/data/alimentos/porciones")
+    suspend fun procionesAlimentos(@Header("auth") token: String?, @Body user: DataGraph) : DonaGraphResult
+
+
+    //Actividades
+    @POST("/data/Actividad/tipo")
+    suspend fun tipoActividades(@Header("auth") token: String?, @Body user: DataGraph) : TipoActividadesResult
+
+    @POST("/data/Actividad/intensidad")
+    suspend fun intensidadActividades(@Header("auth") token: String?, @Body user: DataGraph) : IntensidadActividadesResult
+
+    //Ansiedad
+    @POST("/data/ansiedad/intensidad")
+    suspend fun intensidadAnsiedad(@Header("auth") token: String?, @Body user: DataGraph) : IntensidadAnsiedadesResult
+
+    @POST("/data/ansiedad/sintoma")
+    suspend fun sintomasAnsiedad(@Header("auth") token: String?, @Body user: DataGraph) : SintomasResult
+
+
+    //Sueño
+    @POST("/data/sueno/pastilla")
+    suspend fun pastillaSueno(@Header("auth") token: String?, @Body user: DataGraph) : PastillaSuenoResult
+
+    @POST("/data/sueno/horas")
+    suspend fun horasSueno(@Header("auth") token: String?, @Body user: DataGraph) : HorasResult
+
+
+    //Pastillas
+    @POST("/data/pastillas/tiempo")
+    suspend fun tiempoPastillas(@Header("auth") token: String?, @Body user: DataGraph) : TiempoPastillasResult
+
+    @POST("/data/pastillas/medicamento")
+    suspend fun medicamentosPastillas(@Header("auth") token: String?, @Body user: DataGraph) : MedicamentosResult
+
+
+    //Presiones
+    @POST("/data/presion/sistolica")
+    suspend fun sistolicaPresion(@Header("auth") token: String?, @Body user: DataGraph) : SistolicasResult
+
+    @POST("/data/presion/diastolica")
+    suspend fun diastolicaPresion(@Header("auth") token: String?, @Body user: DataGraph) : DiastolicasResult
 
 
     //Tablas

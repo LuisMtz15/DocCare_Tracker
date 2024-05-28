@@ -6,7 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,13 +17,24 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.ejemplosapis.viewModel.AppViewModel
 
 @Composable
 fun Inicio_Sueño(navController: NavHostController, viewModel: AppViewModel) {
-    val sueñoslist = viewModel.suenolist.collectAsState()
+    val suenoHoras = viewModel.tablaSuenohoraslist.collectAsState()
+    val suenoPastilla = viewModel.tablaSuenopastillaslist.collectAsState()
+    val colores: List<Color> = listOf(
+        Color(0xFF40A0BB), // SueñoF
+        Color(0xFF54BCBD), // SueñoC
+        Color(0xFF5FB0C1), // Agrega tres colores más de la misma gama
+        Color(0xFF6AC6C3),
+        Color(0xFF75DBC5)
+    )
+
 
     Surface(modifier = Modifier.fillMaxSize()) {
 
@@ -43,24 +57,36 @@ fun Inicio_Sueño(navController: NavHostController, viewModel: AppViewModel) {
 
             Spacer(modifier = Modifier.padding(bottom = 155.dp))
 
-            Row(modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically) {
-                Column(modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center) {
-                    Text(text = "Espacio para las gráficas",
-                        modifier = Modifier.align(Alignment.CenterHorizontally))
-                    Text(text = "Espacio para las gráficas",
-                        modifier = Modifier.align(Alignment.CenterHorizontally))
+            if (suenoHoras.value != null || suenoPastilla.value != null) {
+                Row(modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Column(modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center) {
+                        DonutChartValues(suenoHoras.value,colores, "Horas en descanso con más frecuencia")
+
+
+                    }
+                    Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                    Column(modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center) {
+                        BarChartValues(suenoPastilla.value, colores, "Uso de pastillas para dormir")
+                    }
                 }
-                Column(modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center) {
-                    Text(text = "Espacio para las gráficas",
-                        modifier = Modifier.align(Alignment.CenterHorizontally))
-                    Text(text = "Espacio para las gráficas",
-                        modifier = Modifier.align(Alignment.CenterHorizontally))
+            } else{
+                Row(modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Card (colors = CardDefaults.cardColors(Color.Transparent),){
+                        Text(text = "No hay datos para las gráficas",
+                            fontSize = 20.sp,fontWeight = FontWeight.Bold)
+                    }
                 }
             }
 

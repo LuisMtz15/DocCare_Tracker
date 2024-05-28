@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.doccare_tracker.model.Actividad.ModificarActividad
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.ejemplosapis.viewModel.AppViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -42,6 +43,7 @@ fun Editar_Actividad_especifica(navController: NavHostController, viewModel: App
     //Basicas
     val showLogoutDialog = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val usuario_id = viewModel.usuario_id.value
 
     //Selecciones
     val duracionSeleccionada = remember { mutableStateOf(0) }
@@ -181,6 +183,14 @@ fun Editar_Actividad_especifica(navController: NavHostController, viewModel: App
                 editaractividadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaActividadesTipos(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaActividadesIntensidades(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se hizo el cambio con éxito",
                                 duration = SnackbarDuration.Short,
@@ -251,6 +261,10 @@ fun Editar_Actividad_especifica(navController: NavHostController, viewModel: App
                 eliminaractividadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaActividadesTipos(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaActividadesIntensidades(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             snackbarHostState.showSnackbar(
                                 message = "Se eliminó la actividad con éxito",
                                 duration = SnackbarDuration.Short,

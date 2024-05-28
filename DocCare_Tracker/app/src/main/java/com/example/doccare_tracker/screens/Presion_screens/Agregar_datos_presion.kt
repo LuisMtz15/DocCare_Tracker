@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Presion.AgregarPresion
 import com.example.ejemplosapis.viewModel.AppViewModel
 
@@ -163,6 +164,14 @@ fun Agregar_Presion(navController: NavHostController, viewModel: AppViewModel) {
                 agregarpresionesResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaPresionDiastolica(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaPresionSistolica(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se agregó el registro ccorrectamente",
                                 duration = SnackbarDuration.Short,

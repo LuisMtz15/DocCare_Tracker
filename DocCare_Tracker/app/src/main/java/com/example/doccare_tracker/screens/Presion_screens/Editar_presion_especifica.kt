@@ -34,10 +34,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Presion.ModificarPresion
 import com.example.ejemplosapis.viewModel.AppViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
 fun Editar_Presion_especifica(navController: NavHostController, viewModel: AppViewModel) {
 
@@ -45,6 +46,7 @@ fun Editar_Presion_especifica(navController: NavHostController, viewModel: AppVi
     //Basicas
     val showLogoutDialog = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val usuario_id = viewModel.usuario_id.value
 
 
     //Iniciales
@@ -188,6 +190,14 @@ fun Editar_Presion_especifica(navController: NavHostController, viewModel: AppVi
                 editarpresionResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaPresionDiastolica(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaPresionSistolica(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se hizo el cambio con éxito",
                                 duration = SnackbarDuration.Short,
@@ -255,6 +265,10 @@ fun Editar_Presion_especifica(navController: NavHostController, viewModel: AppVi
                 eliminarpresionResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaPresionDiastolica(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaPresionSistolica(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             snackbarHostState.showSnackbar(
                                 message = "Se eliminó el registro con éxito",
                                 duration = SnackbarDuration.Short,

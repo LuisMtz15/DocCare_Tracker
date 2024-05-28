@@ -35,15 +35,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.doccare_tracker.model.Ansiedad.ModificarAnsiedad
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.ejemplosapis.viewModel.AppViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
 fun Editar_sintoma_especifico(navController: NavHostController, viewModel: AppViewModel) {
 
     //Basicas
     val showLogoutDialog = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val usuario_id = viewModel.usuario_id.value
 
 
     //Iniciales
@@ -183,6 +185,14 @@ fun Editar_sintoma_especifico(navController: NavHostController, viewModel: AppVi
                 editaransiedadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaAnsiedadSintomas(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaAnsiedadIntensidades(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se hizo el cambio con éxito",
                                 duration = SnackbarDuration.Short,
@@ -250,6 +260,10 @@ fun Editar_sintoma_especifico(navController: NavHostController, viewModel: AppVi
                 eliminaransiedadResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaAnsiedadSintomas(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaAnsiedadIntensidades(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             snackbarHostState.showSnackbar(
                                 message = "Se eliminó el síntoma con éxito",
                                 duration = SnackbarDuration.Short,

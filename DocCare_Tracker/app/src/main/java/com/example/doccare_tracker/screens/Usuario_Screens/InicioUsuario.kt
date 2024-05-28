@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.utils_app.Actividad_ini
 import com.example.doccare_tracker.utils_app.Alimentos_ini
 import com.example.doccare_tracker.utils_app.ansiedad_ini
@@ -67,26 +68,51 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                     item {
 
                         Alimentos_ini(click = {
+                            viewModel.leertablaAlimentosfechas(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaAlimentosPorciones(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             viewModel.leeralimentos(usuario_id = usuario_id)
                         }
                         )
                         Actividad_ini(click = {
+                            viewModel.leertablaActividadesTipos(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaActividadesIntensidades(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+
                             viewModel.leeractividades(user = usuario_id)
                         }
                         )
                         ansiedad_ini(click = {
+                            viewModel.leertablaAnsiedadSintomas(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaAnsiedadIntensidades(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             viewModel.leeransiedades(user = usuario_id)
                         }
                         )
                         presion_ini(click = {
+                            viewModel.leertablaPresionDiastolica(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaPresionSistolica(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             viewModel.leerpresiones(user = usuario_id)
                         }
                         )
                         sueno_ini(click = {
+                            viewModel.leertablaSuenohoras(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaSuenopastillas(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             viewModel.leersueno(user = usuario_id)
                         }
                         )
                         pastillas_ini(click = {
+                            viewModel.leertablaPastillasTiempo(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaPastillasMedicamento(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             viewModel.leerpastillas(user = usuario_id)
                         }
                         )

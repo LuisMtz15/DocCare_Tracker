@@ -33,10 +33,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Sueño.ModificarSueño
 import com.example.ejemplosapis.viewModel.AppViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
 fun Editar_sueño_especifico(navController: NavHostController, viewModel: AppViewModel) {
 
@@ -44,6 +45,7 @@ fun Editar_sueño_especifico(navController: NavHostController, viewModel: AppVie
     //Basicas
     val showLogoutDialog = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val usuario_id = viewModel.usuario_id.value
 
     //Iniciales
     val id_sueno by viewModel.idSueno.collectAsState()
@@ -170,6 +172,10 @@ fun Editar_sueño_especifico(navController: NavHostController, viewModel: AppVie
                 editarsuenoResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaSuenohoras(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
+                            viewModel.leertablaSuenopastillas(DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual()))
                             snackbarHostState.showSnackbar(
                                 message = "Se hizo el cambio con éxito",
                                 duration = SnackbarDuration.Short,
@@ -238,6 +244,14 @@ fun Editar_sueño_especifico(navController: NavHostController, viewModel: AppVie
                 eliminarsuenoResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaSuenohoras(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaSuenopastillas(
+                                DataGraph(
+                                usuario_id = usuario_id, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se eliminó el registro con éxito",
                                 duration = SnackbarDuration.Short,
@@ -290,5 +304,12 @@ fun calcularDuracionSueño(horaDormir: String, horaDespertar: String): Int {
         (24 * 60 - totalMinutosDormir) + totalMinutosDespertar
     }
 
-    return duracionSueño
+    val horasRedondeadas = if (duracionSueño % 60 >= 42) {
+        duracionSueño / 60 + 1
+    } else {
+        duracionSueño / 60
+    }
+
+    return horasRedondeadas
 }
+

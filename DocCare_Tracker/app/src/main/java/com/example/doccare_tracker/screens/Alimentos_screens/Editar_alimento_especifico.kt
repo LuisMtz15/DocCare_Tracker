@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.doccare_tracker.model.Alimentos.EditarAlimento
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.ejemplosapis.viewModel.AppViewModel
 
 
@@ -42,6 +43,7 @@ import com.example.ejemplosapis.viewModel.AppViewModel
 @Composable
 fun Editar_Alimentos_Especifico(navController: NavHostController, viewModel: AppViewModel) {
     val showLogoutDialog = remember { mutableStateOf(false) }
+    val usuario by viewModel.usuario_id.collectAsState()
 
     val nombrecomida by viewModel.nombreAlimento.collectAsState()
     val comida = remember { mutableStateOf(nombrecomida) }
@@ -131,6 +133,14 @@ fun Editar_Alimentos_Especifico(navController: NavHostController, viewModel: App
                 editaralimento?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaAlimentosfechas(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaAlimentosPorciones(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se hizo el cambio con éxito",
                                 duration = SnackbarDuration.Short,
@@ -203,6 +213,10 @@ fun Editar_Alimentos_Especifico(navController: NavHostController, viewModel: App
                 eliminaralimento?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaAlimentosfechas(DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual()))
+                            viewModel.leertablaAlimentosPorciones(DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual()))
                             snackbarHostState.showSnackbar(
                                 message = "Se eliminó el alimento con éxito",
                                 duration = SnackbarDuration.Short,

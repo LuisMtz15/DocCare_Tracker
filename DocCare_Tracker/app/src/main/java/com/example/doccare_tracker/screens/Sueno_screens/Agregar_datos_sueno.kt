@@ -26,10 +26,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Sueño.AgregarSueño
 import com.example.ejemplosapis.viewModel.AppViewModel
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -162,6 +161,14 @@ fun Agregar_Sueño(navController: NavHostController, viewModel: AppViewModel) {
                 agregarsuenoResult?.let { result ->
                     LaunchedEffect(result) {
                         if (result.isSuccess) {
+                            viewModel.leertablaSuenohoras(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
+                            viewModel.leertablaSuenopastillas(
+                                DataGraph(
+                                usuario_id = usuario, fecha = obtenerFechaActual())
+                            )
                             snackbarHostState.showSnackbar(
                                 message = "Se agregó el registro ccorrectamente",
                                 duration = SnackbarDuration.Short,

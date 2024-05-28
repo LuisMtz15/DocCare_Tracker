@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.doccare_tracker.model.Actividad.AgregarActividad
+import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.ejemplosapis.viewModel.AppViewModel
 
 
@@ -167,6 +168,14 @@ fun Agregar_Actividad(navController: NavHostController, viewModel: AppViewModel)
             agregarrespuesta?.let { result ->
                 LaunchedEffect(result) {
                     if (result.isSuccess) {
+                        viewModel.leertablaActividadesTipos(
+                            DataGraph(
+                            usuario_id = usuario, fecha = obtenerFechaActual())
+                        )
+                        viewModel.leertablaActividadesIntensidades(
+                            DataGraph(
+                            usuario_id = usuario, fecha = obtenerFechaActual())
+                        )
                         snackbarHostState.showSnackbar(
                             message = "Se agregó la actividad ccorrectamente",
                             duration = SnackbarDuration.Short,

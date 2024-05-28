@@ -31,6 +31,19 @@ import com.example.doccare_tracker.model.Ansiedad.ModificarAnsiedad
 import com.example.doccare_tracker.model.Ansiedad.ModificarAnsiedadRespuesta
 import com.example.doccare_tracker.model.Ansiedad.Tablas.IntensidadAnsiedad
 import com.example.doccare_tracker.model.Ansiedad.Tablas.SintomasAnsiedad
+import com.example.doccare_tracker.model.Graphs.Actividades.IntensidadActividadesResult
+import com.example.doccare_tracker.model.Graphs.Actividades.TipoActividadesResult
+import com.example.doccare_tracker.model.Graphs.Alimentos.BarrasGraphResult
+import com.example.doccare_tracker.model.Graphs.Alimentos.DonaGraphResult
+import com.example.doccare_tracker.model.Graphs.Ansiedad.IntensidadAnsiedadesResult
+import com.example.doccare_tracker.model.Graphs.Ansiedad.SintomasResult
+import com.example.doccare_tracker.model.Graphs.DataGraph
+import com.example.doccare_tracker.model.Graphs.Pastillas.MedicamentosResult
+import com.example.doccare_tracker.model.Graphs.Pastillas.TiempoPastillasResult
+import com.example.doccare_tracker.model.Graphs.Presion.DiastolicasResult
+import com.example.doccare_tracker.model.Graphs.Presion.SistolicasResult
+import com.example.doccare_tracker.model.Graphs.Sueño.HorasResult
+import com.example.doccare_tracker.model.Graphs.Sueño.PastillaSuenoResult
 import com.example.doccare_tracker.model.Informacion_Personal.Contraseñas.ModificarContraseña
 import com.example.doccare_tracker.model.Informacion_Personal.Contraseñas.ModificarContraseñaRespuesta
 import com.example.doccare_tracker.model.Informacion_Personal.Doctor.ModificarDatosDoctor
@@ -1846,6 +1859,341 @@ fun cambiar_valores(datoString: String):String{
         leerpresionesResumen(user)
         _exitodatos.value = true
     }
+
+    //Funciones para las graficas
+
+    //Alimentos porciones
+
+    private val _tablaAlimentosPorcionesResult = MutableStateFlow<Result<DonaGraphResult>?>(null)
+    val tablaAlimentosPorciones = _tablaAlimentosPorcionesResult.asStateFlow()
+    fun setTablaAlimentosPorciones(result: Result<DonaGraphResult>?) {
+        _tablaAlimentosPorcionesResult.value = result
+    }
+    private val _tablaAlimentosPorcioneslist = MutableStateFlow<List<String>?>(null)
+    val tablaAlimentosPorcioneslist = _tablaAlimentosPorcioneslist.asStateFlow()
+    fun setTablaAlimentosPorcioneslist(list: List<String>?) {
+        _tablaAlimentosPorcioneslist.value = list
+    }
+
+    fun leertablaAlimentosPorciones(user: DataGraph) {
+        _tablaAlimentosPorcionesResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.procionesAlimentos(jwtToken.value,user)
+                _tablaAlimentosPorcioneslist.value=response.tipos_porcion
+                _tablaAlimentosPorcionesResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaAlimentosPorcionesResult.value =Result.failure(e)
+            }
+        }
+    }
+
+    //Alimentos Fechas
+
+    private val _tablaAlimentosFechasResult = MutableStateFlow<Result<BarrasGraphResult>?>(null)
+    val tablaAlimentosFechas = _tablaAlimentosFechasResult.asStateFlow()
+    fun setTablaAlimentosFechas(result: Result<BarrasGraphResult>?) {
+        _tablaAlimentosFechasResult.value = result
+    }
+
+    private val _tablaAlimentosFechaslist = MutableStateFlow<List<String>?>(null)
+    val tablaAlimentosFechaslist = _tablaAlimentosFechaslist.asStateFlow()
+    fun setTablaAlimentosFechaslist(list: List<String>?) {
+        _tablaAlimentosFechaslist.value = list
+    }
+
+    fun leertablaAlimentosfechas(user: DataGraph) {
+        _tablaAlimentosFechasResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.fechasAlimentos(jwtToken.value,user)
+                _tablaAlimentosFechaslist.value=response.Fechas
+                _tablaAlimentosFechasResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaAlimentosFechasResult.value =Result.failure(e)
+            }
+        }
+    }
+
+    //Actividades Intensidades
+
+    private val _tablaActividadesIntensidadesResult = MutableStateFlow<Result<IntensidadActividadesResult>?>(null)
+    val tablaActividadesIntensidades = _tablaActividadesIntensidadesResult.asStateFlow()
+    fun setTablaActividadesIntensidades(result: Result<IntensidadActividadesResult>?) {
+        _tablaActividadesIntensidadesResult.value = result
+    }
+
+    private val _tablaActividadesIntensidadeslist = MutableStateFlow<List<String>?>(null)
+    val tablaActividadesIntensidadeslist = _tablaActividadesIntensidadeslist
+    fun setTablaActividadesIntensidadeslist(list: List<String>?) {
+        _tablaActividadesIntensidadeslist.value = list
+    }
+
+    fun leertablaActividadesIntensidades(user: DataGraph) {
+        _tablaActividadesIntensidadesResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.intensidadActividades(jwtToken.value,user)
+                _tablaActividadesIntensidadeslist.value=response.IntensidadesActividad
+                _tablaActividadesIntensidadesResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaActividadesIntensidadesResult.value =Result.failure(e)
+            }
+        }
+    }
+
+    //Actividades Tipos
+
+    private val _tablaActividadesTiposResult = MutableStateFlow<Result<TipoActividadesResult>?>(null)
+    val tablaActividadesTipos = _tablaActividadesTiposResult.asStateFlow()
+    fun setTablaActividadesTipos(result: Result<TipoActividadesResult>?) {
+        _tablaActividadesTiposResult.value = result
+    }
+
+    private val _tablaActividadesTiposlist = MutableStateFlow<List<String>?>(null)
+    val tablaActividadesTiposlist = _tablaActividadesTiposlist
+    fun setTablaActividadesTiposlist(list: List<String>?) {
+        _tablaActividadesTiposlist.value = list
+    }
+
+    fun leertablaActividadesTipos(user: DataGraph) {
+        _tablaActividadesTiposResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.tipoActividades(jwtToken.value,user)
+                _tablaActividadesTiposlist.value=response.tiposActividad
+                _tablaActividadesTiposResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaActividadesTiposResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Ansiedad Intensidad
+
+    private val _tablaAnsiedadIntensidadesResult = MutableStateFlow<Result<IntensidadAnsiedadesResult>?>(null)
+    val tablaAnsiedadIntensidades = _tablaAnsiedadIntensidadesResult.asStateFlow()
+    fun setTablaAnsiedadIntensidades(result: Result<IntensidadAnsiedadesResult>?) {
+        _tablaAnsiedadIntensidadesResult.value = result
+    }
+
+    private val _tablaAnsiedadIntensidadeslist = MutableStateFlow<List<String>?>(null)
+    val tablaAnsiedadIntensidadeslist = _tablaAnsiedadIntensidadeslist
+    fun setTablaAnsiedadIntensidadeslist(list: List<String>?) {
+        _tablaAnsiedadIntensidadeslist.value = list
+    }
+
+    fun leertablaAnsiedadIntensidades(user: DataGraph) {
+        _tablaAnsiedadIntensidadesResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.intensidadAnsiedad(jwtToken.value,user)
+                _tablaAnsiedadIntensidadeslist.value=response.Intensidades
+                _tablaAnsiedadIntensidadesResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaAnsiedadIntensidadesResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Ansiedad Sintomas
+
+    private val _tablaAnsiedadSintomasResult = MutableStateFlow<Result<SintomasResult>?>(null)
+    val tablaAnsiedadSintomas = _tablaAnsiedadSintomasResult.asStateFlow()
+    fun setTablaAnsiedadSintomas(result: Result<SintomasResult>?) {
+        _tablaAnsiedadSintomasResult.value = result
+    }
+
+    private val _tablaAnsiedadSintomaslist = MutableStateFlow<List<String>?>(null)
+    val tablaAnsiedadSintomaslist = _tablaAnsiedadSintomaslist
+    fun setTablaAnsiedadSintomaslist(list: List<String>?) {
+        _tablaAnsiedadSintomaslist.value = list
+    }
+
+    fun leertablaAnsiedadSintomas(user: DataGraph) {
+        _tablaAnsiedadSintomasResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.sintomasAnsiedad(jwtToken.value,user)
+                _tablaAnsiedadSintomaslist.value=response.Sintomas
+                _tablaAnsiedadSintomasResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaAnsiedadSintomasResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Presion Diastolica
+
+    private val _tablaPresionDiastolicaResult = MutableStateFlow<Result<DiastolicasResult>?>(null)
+    val tablaPresionDiastolica = _tablaPresionDiastolicaResult.asStateFlow()
+    fun setTablaPresionDiastolica(result: Result<DiastolicasResult>?) {
+        _tablaPresionDiastolicaResult.value = result
+    }
+
+    private val _tablaPresionDiastolicalist = MutableStateFlow<List<String>?>(null)
+    val tablaPresionDiastolicalist = _tablaPresionDiastolicalist
+    fun setTablaPresionDiastolicalist(list: List<String>?) {
+        _tablaPresionDiastolicalist.value = list
+    }
+
+    fun leertablaPresionDiastolica(user: DataGraph) {
+        _tablaPresionDiastolicaResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.diastolicaPresion(jwtToken.value,user)
+                _tablaPresionDiastolicalist.value=response.Diastolicas
+                _tablaPresionDiastolicaResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaPresionDiastolicaResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Presion Sistolica
+
+    private val _tablaPresionSistolicaResult = MutableStateFlow<Result<SistolicasResult>?>(null)
+    val tablaPresionSistolica = _tablaPresionSistolicaResult.asStateFlow()
+    fun setTablaPresionSistolica(result: Result<SistolicasResult>?) {
+        _tablaPresionSistolicaResult.value = result
+    }
+
+    private val _tablaPresionSistolicalist = MutableStateFlow<List<String>?>(null)
+    val tablaPresionSistolicalist = _tablaPresionSistolicalist
+    fun setTablaPresionSistolicalist(list: List<String>?) {
+        _tablaPresionSistolicalist.value = list
+    }
+
+    fun leertablaPresionSistolica(user: DataGraph) {
+        _tablaPresionSistolicaResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.sistolicaPresion(jwtToken.value,user)
+                _tablaPresionSistolicalist.value=response.Sistolicas
+                _tablaPresionSistolicaResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaPresionSistolicaResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Pastillas Tiempo
+
+    private val _tablaPastillasTiempoResult = MutableStateFlow<Result<TiempoPastillasResult>?>(null)
+    val tablaPastillasTiempo = _tablaPastillasTiempoResult.asStateFlow()
+    fun setTablaPastillasTiempo(result: Result<TiempoPastillasResult>?) {
+        _tablaPastillasTiempoResult.value = result
+    }
+
+    private val _tablaPastillasTiempolist = MutableStateFlow<List<String>?>(null)
+    val tablaPastillasTiempolist = _tablaPastillasTiempolist
+    fun setTablaPastillasTiempolist(list: List<String>?) {
+        _tablaPastillasTiempolist.value = list
+    }
+
+    fun leertablaPastillasTiempo(user: DataGraph) {
+        _tablaPastillasTiempoResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.tiempoPastillas(jwtToken.value,user)
+                _tablaPastillasTiempolist.value=response.TiempoPastillas
+                _tablaPastillasTiempoResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaPastillasTiempoResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Pastillas Medicamento
+
+    private val _tablaPastillasMedicamentoResult = MutableStateFlow<Result<MedicamentosResult>?>(null)
+    val tablaPastillasMedicamento = _tablaPastillasMedicamentoResult.asStateFlow()
+    fun setTablaPastillasMedicamento(result: Result<MedicamentosResult>?) {
+        _tablaPastillasMedicamentoResult.value = result
+    }
+
+    private val _tablaPastillasMedicamentolist = MutableStateFlow<List<String>?>(null)
+    val tablaPastillasMedicamentolist = _tablaPastillasMedicamentolist
+    fun setTablaPastillasMedicamentolist(list: List<String>?) {
+        _tablaPastillasMedicamentolist.value = list
+    }
+
+    fun leertablaPastillasMedicamento(user: DataGraph) {
+        _tablaPastillasMedicamentoResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.medicamentosPastillas(jwtToken.value,user)
+                _tablaPastillasMedicamentolist.value=response.Medicamentos
+                _tablaPastillasMedicamentoResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaPastillasMedicamentoResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Sueno Pastilla
+
+    private val _tablaSuenopastillasResult = MutableStateFlow<Result<PastillaSuenoResult>?>(null)
+    val tablaSuenopastillas = _tablaSuenopastillasResult.asStateFlow()
+    fun setTablaSuenopastillas(result: Result<PastillaSuenoResult>?) {
+        _tablaSuenopastillasResult.value = result
+    }
+
+    private val _tablaSuenopastillaslist = MutableStateFlow<List<String>?>(null)
+    val tablaSuenopastillaslist = _tablaSuenopastillaslist
+    fun setTablaSuenopastillaslist(list: List<String>?) {
+        _tablaSuenopastillaslist.value = list
+    }
+
+    fun leertablaSuenopastillas(user: DataGraph) {
+        _tablaSuenopastillasResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.pastillaSueno(jwtToken.value,user)
+                _tablaSuenopastillaslist.value=response.PastillasSueno
+                _tablaSuenopastillasResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaSuenopastillasResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
+    //Sueno horas
+
+    private val _tablaSuenohorasResult = MutableStateFlow<Result<HorasResult>?>(null)
+    val tablaSuenohoras = _tablaSuenohorasResult.asStateFlow()
+    fun setTablaSuenohoras(result: Result<HorasResult>?) {
+        _tablaSuenohorasResult.value = result
+    }
+
+    private val _tablaSuenohoraslist = MutableStateFlow<List<String>?>(null)
+    val tablaSuenohoraslist = _tablaSuenohoraslist
+    fun setTablaSuenohoraslist(list: List<String>?) {
+        _tablaSuenohoraslist.value = list
+    }
+
+    fun leertablaSuenohoras(user: DataGraph) {
+        _tablaSuenohorasResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.horasSueno(jwtToken.value,user)
+                _tablaSuenohoraslist.value=response.Horas
+                _tablaSuenohorasResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaSuenohorasResult.value =Result.failure(e)
+            }
+        }
+    }
+
+
 
 
 
