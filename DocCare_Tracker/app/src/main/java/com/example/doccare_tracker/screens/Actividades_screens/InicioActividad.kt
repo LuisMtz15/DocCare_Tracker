@@ -57,7 +57,7 @@ fun Inicio_Actividad(navController: NavHostController, viewModel: AppViewModel) 
                 }
             }
 
-            Spacer(modifier = Modifier.padding(bottom = 155.dp))
+            Spacer(modifier = Modifier.padding(bottom = 190.dp))
 
             if (actividadIntensidadeslist.value != null || actividadTiposlist.value != null) {
                 Row(modifier = Modifier.fillMaxWidth(),
@@ -69,15 +69,13 @@ fun Inicio_Actividad(navController: NavHostController, viewModel: AppViewModel) 
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
                         DonutChartValues(actividadTiposlist.value,colores, "Tipo de actividad más frecuente")
-
-
                     }
                     Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                     Column(modifier = Modifier
                         .weight(1f)
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center) {
+                        verticalArrangement = Arrangement.Bottom) {
                         BarChartValues(actividadIntensidadeslist.value, colores, "Intensidades en tus actividades")
                     }
                 }

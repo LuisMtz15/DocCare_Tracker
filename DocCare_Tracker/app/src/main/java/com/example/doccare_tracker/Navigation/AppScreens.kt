@@ -45,6 +45,7 @@ sealed class AppScreens(val route:String){
     object ActividadAgregar:AppScreens("Actividad_agregar")
     object ActividadModificar:AppScreens("Actividad_modificar")
     object ActividadEditar:AppScreens("Actividad_editar")
+    object DudasActividad:AppScreens("Dudas")
 
     //Procesos Individuales Ansiedad
 

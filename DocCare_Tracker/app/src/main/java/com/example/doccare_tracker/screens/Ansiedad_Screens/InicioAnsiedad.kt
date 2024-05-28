@@ -55,7 +55,7 @@ fun Inicio_Ansiedad(navController: NavHostController, viewModel: AppViewModel) {
                 }
             }
 
-            Spacer(modifier = Modifier.padding(bottom = 155.dp))
+            Spacer(modifier = Modifier.padding(bottom = 190.dp))
 
             if (ansiedadSintomas.value != null || ansiedadIntensidades.value != null) {
                 Row(modifier = Modifier.fillMaxWidth(),
@@ -75,7 +75,7 @@ fun Inicio_Ansiedad(navController: NavHostController, viewModel: AppViewModel) {
                         .weight(1f)
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center) {
+                        verticalArrangement = Arrangement.Bottom) {
                         BarChartValues(ansiedadIntensidades.value, colores, "Síntomas más frecuentes")
                     }
                 }

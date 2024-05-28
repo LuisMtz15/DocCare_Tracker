@@ -1,5 +1,6 @@
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,8 +22,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -103,6 +108,18 @@ fun Agregar_Actividad(navController: NavHostController, viewModel: AppViewModel)
                     style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 )
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
+                            append("¿Dudas?")
+                        }
+                    },
+                    color = MyColorPalette.ActividadF,
+                    modifier = Modifier
+                        .clickable { navController.navigate(route = AppScreens.DudasActividad.route)}
+
+                )
+                Spacer(modifier = Modifier.padding(bottom = 5.dp))
 
                 SliderWithText(palabras = tipos, cP = MyColorPalette.ActividadF,
                     cS = MyColorPalette.ActividadC, sel = tipoSeleccionado)

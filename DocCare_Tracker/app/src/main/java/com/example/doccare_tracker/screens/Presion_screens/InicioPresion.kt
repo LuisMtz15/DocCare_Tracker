@@ -55,7 +55,7 @@ fun Inicio_Presion(navController: NavHostController, viewModel: AppViewModel) {
                 }
             }
 
-            Spacer(modifier = Modifier.padding(bottom = 155.dp))
+            Spacer(modifier = Modifier.padding(bottom = 190.dp))
 
             if (presiondiastolica.value != null || presionsistollica.value != null) {
                 Row(modifier = Modifier.fillMaxWidth(),

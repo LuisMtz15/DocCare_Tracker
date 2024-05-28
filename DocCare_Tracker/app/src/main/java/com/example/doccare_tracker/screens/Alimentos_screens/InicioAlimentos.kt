@@ -56,7 +56,7 @@ fun Inicio_Alimentos(navController: NavHostController, viewModel: AppViewModel) 
                 }
             }
 
-            Spacer(modifier = Modifier.padding(bottom = 155.dp))
+            Spacer(modifier = Modifier.padding(bottom = 190.dp))
 
             if (alimentosPorcioneslist.value != null || alimentosFechalist.value != null) {
                 Row(modifier = Modifier.fillMaxWidth(),
@@ -76,7 +76,7 @@ fun Inicio_Alimentos(navController: NavHostController, viewModel: AppViewModel) 
                         .weight(1f)
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center) {
+                        verticalArrangement = Arrangement.Bottom) {
                         BarChartValues(alimentosFechalist.value, colores, "Número de Alimentos por fecha")
                     }
                 }

@@ -122,6 +122,10 @@ fun AppNavigation(viewModel: AppViewModel, startDestination: String = AppScreens
             Modificar_actividad(navController,viewModel)
         }
 
+        composable(route = AppScreens.DudasActividad.route) {
+            Dudas(navController,viewModel)
+        }
+
         //Procesos Individuales Ansiedad
 
         composable(route = AppScreens.AnsiedadAgregar.route) {

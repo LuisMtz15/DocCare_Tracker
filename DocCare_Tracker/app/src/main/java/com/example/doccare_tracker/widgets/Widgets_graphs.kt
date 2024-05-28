@@ -76,7 +76,7 @@ fun BarChart(dates: List<String>, colorPalette: List<Color>, modifier: Modifier 
         drawContext.canvas.nativeCanvas.drawText(
             title,
             center.x,
-            size.height + 80f,
+            size.height + 170f,
             Paint().apply {
                 color = android.graphics.Color.BLACK
                 textAlign = Paint.Align.CENTER

@@ -94,7 +94,7 @@ fun DonutChart(data: List<Float>, colors: List<Color>, labels: List<String>, mod
         drawContext.canvas.nativeCanvas.drawText(
             title,
             center.x,
-            center.y + outerRadius + 70f,
+            center.y + outerRadius + 40f,
             Paint().apply {
                 color = android.graphics.Color.BLACK
                 textAlign = Paint.Align.CENTER
