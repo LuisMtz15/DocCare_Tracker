@@ -9,6 +9,8 @@ const { LoginController } = require('../controllers/LoginController');
 const { modificarDatosUsuario } = require('../controllers/ModificarD_C');
 const { modificarDatosDoctor } = require('../controllers/ModificarD_C');
 const { modificarPassword } = require('../controllers/ModificarD_C');
+const {obtener_pesos} = require('../controllers/Graphs/Data');
+const {modificarpeso} = require('../controllers/ModificarD_C');
 const {verificarToken} = require('../middleware/verificarToken');
 const {verificarToken_CU} = require('../middleware/verificarToken');
 
@@ -41,6 +43,12 @@ router.post('/usuarios/token',verificarTokenparaLogin);
 
 // Ruta para modificar contraseña de un user
 router.post('/usuarios/modificar/pswd',verificarToken_CU("Usuario"), modificarPassword);
+
+// Ruta para obtener los pesos de un usuario
+router.post('/usuarios/pesos', obtener_pesos);
+
+// Ruta para modificar el peso de un usuario
+router.post('/usuarios/modificarpeso', modificarpeso);
 
 
 module.exports = router;

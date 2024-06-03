@@ -1,4 +1,4 @@
-const { User, DetalleUsuario, Role} = require('../models/User');
+const { User, DetalleUsuario, Role, Pesos} = require('../models/User');
 const bcrypt = require('bcrypt');
 
 exports.modificarDatosUsuario = async (req, res) => {
@@ -18,6 +18,12 @@ exports.modificarDatosUsuario = async (req, res) => {
         if (nombreRol.nombre !== "Usuario") {
             return res.status(404).json({ error: 'No se puede modificar el usuario Doctor' });
         }
+
+        //Agregar peso a mi tabla de pesos
+        const pesoNuevo = await Pesos.create({
+            usuario_id,
+            peso
+        });
 
 
         const detalleUsuario = await DetalleUsuario.findOne({ where: { usuario_id } });
@@ -99,3 +105,39 @@ exports.modificarPassword = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+exports.modificarpeso = async (req, res) => {
+    try {
+        const { usuario_id, peso } = req.body;
+
+        const usuario = await User.findByPk(usuario_id);
+        if (!usuario) {
+            return res.status(404).json({ error: 'El usuario especificado no existe' });
+        }
+
+        const nombreRol = await Role.findByPk(usuario.rol_id, { attributes: ['nombre'] });
+        if (nombreRol.nombre !== "Usuario") {
+            return res.status(404).json({ error: 'No se puede modificar el peso de un Doctor' });
+        }
+
+        const detalleExistente = await DetalleUsuario.findOne({ where: { usuario_id } });
+        if (!detalleExistente) {
+            return res.status(400).json({ error: 'No existe un detalle de usuario registrado para este usuario' });
+        }
+
+        const pesoNuevo = await Pesos.create({
+            usuario_id,
+            peso
+        });
+
+        const detalleUsuario = await DetalleUsuario.findOne({ where: { usuario_id } });
+
+        await detalleUsuario.update({
+            peso: peso
+        });
+
+        res.status(201).json({ message: 'Peso registrado correctamente' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}

@@ -176,7 +176,7 @@ fun Modi_personal_usuario(navController: NavHostController, viewModel: AppViewMo
                         labelId = "",
                         enabled = true,
                         isSingleLine = true,
-                        keyboardType = KeyboardType.Number,)}
+                        keyboardType = KeyboardType.Decimal,)}
 
                 item {
 
@@ -190,7 +190,7 @@ fun Modi_personal_usuario(navController: NavHostController, viewModel: AppViewMo
                         labelId = "",
                         enabled = true,
                         isSingleLine = true,
-                        keyboardType = KeyboardType.Number,)}
+                        keyboardType = KeyboardType.Decimal,)}
 
                 item {
 
@@ -204,7 +204,7 @@ fun Modi_personal_usuario(navController: NavHostController, viewModel: AppViewMo
                         labelId = "",
                         enabled = true,
                         isSingleLine = true,
-                        keyboardType = KeyboardType.Number,)}
+                        keyboardType = KeyboardType.Decimal,)}
 
                 item {
 
@@ -215,10 +215,11 @@ fun Modi_personal_usuario(navController: NavHostController, viewModel: AppViewMo
                             buttonText = "Aceptar", size = 3,
                             onClickAction = {
 
-                                viewModel.editarDatosUsuario(ModificarDatosUsuario(altura=altura.value.toInt(),
-                                    apellidom=apellidom.value, apellidop=apellidop.value,
-                                    cintura=circunferencia.value.toInt(), correo=correo.value, clave=clave.value,
-                                    nombre=nombre.value, peso=peso.value.toInt(), usuario_id = usuario))
+                                viewModel.editarDatosUsuario(ModificarDatosUsuario(
+                                    altura =altura.value.toFloat(),
+                                    apellidom =apellidom.value, apellidop =apellidop.value,
+                                    cintura =circunferencia.value.toFloat(), correo =correo.value, clave =clave.value,
+                                    nombre =nombre.value, peso =peso.value.toFloat(), usuario_id = usuario))
 
                             })
                     }

@@ -3,6 +3,23 @@ const sequelize = require('../config/database');
 const bcrypt = require('bcrypt');
 
 
+const Pesos = sequelize.define('Pesos', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  usuario_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  peso: {
+    type: DataTypes.DECIMAL(5, 2),
+    allowNull: false
+  }
+});
+
+
 const Role = sequelize.define('Roles', {
   id: {
     type: DataTypes.INTEGER,
@@ -150,4 +167,4 @@ DetalleUsuario.belongsTo(User, { foreignKey: 'usuario_id', as: 'User' });
 
 DetalleDoctor.belongsTo(User, { foreignKey: 'usuario_id', as: 'UserDoc' });
 
-module.exports = { User, Role, Sexo, DetalleUsuario, DetalleDoctor };
+module.exports = { User, Role, Sexo, DetalleUsuario, DetalleDoctor, Pesos};

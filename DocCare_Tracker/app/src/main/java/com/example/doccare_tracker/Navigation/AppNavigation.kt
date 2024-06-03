@@ -1,3 +1,4 @@
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -94,6 +95,12 @@ fun AppNavigation(viewModel: AppViewModel, startDestination: String = AppScreens
         }
         composable(route = AppScreens.Ansiedad.route) {
             Inicio_Ansiedad(navController,viewModel)
+        }
+        composable(route = AppScreens.GraphsData.route) {
+            Data_Graphs(navController,viewModel)
+        }
+        composable(route = AppScreens.ModificarPeso.route) {
+            ModificarPeso(navController,viewModel)
         }
 
 

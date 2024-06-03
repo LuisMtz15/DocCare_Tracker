@@ -53,7 +53,7 @@ fun Actividad_ini(click: () -> Unit) {
 
 @Composable
 fun ansiedad_ini(click: () -> Unit) {
-    val image = painterResource(id = R.drawable.ansiedad)
+    val image = painterResource(id = R.drawable.ansiedad2)
     Column {
         Card(
             modifier = Modifier

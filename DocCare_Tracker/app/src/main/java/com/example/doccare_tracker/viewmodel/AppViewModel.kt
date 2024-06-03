@@ -40,6 +40,10 @@ import com.example.doccare_tracker.model.Graphs.Ansiedad.SintomasResult
 import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Graphs.Pastillas.MedicamentosResult
 import com.example.doccare_tracker.model.Graphs.Pastillas.TiempoPastillasResult
+import com.example.doccare_tracker.model.Graphs.Pesos.ModifcarPeso
+import com.example.doccare_tracker.model.Graphs.Pesos.ModificarPesoResult
+import com.example.doccare_tracker.model.Graphs.Pesos.PesosGraph
+import com.example.doccare_tracker.model.Graphs.Pesos.PesosGraphResult
 import com.example.doccare_tracker.model.Graphs.Presion.DiastolicasResult
 import com.example.doccare_tracker.model.Graphs.Presion.SistolicasResult
 import com.example.doccare_tracker.model.Graphs.Sueño.HorasResult
@@ -1524,8 +1528,28 @@ class AppViewModel (private val serviceApi: UserServiceApi, application: Applica
             }
         }
     }
+
+    fun jalarinformacionusuarios2(user: Int) {
+        _leerUsuarioResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.jalarDatosUsuario(jwtToken.value,user)
+                setAltura(response.altura?.let { cambiar_valores(it) })
+                setApellidoMaterno(response.apellido_materno)
+                setApellidoPaterno(response.apellido_paterno)
+                setCircunferencia(response.circunferencia_abdominal?.let { cambiar_valores(it) })
+                setEdad(response.edad)
+                setPeso(response.peso?.let { cambiar_valores(it)})
+                setEmail(response.email)
+                setNombre(response.nombre)
+                setSexo(response.sexo)
+            } catch(e: Exception){
+                _leerUsuarioResult.value =Result.failure(e)
+            }
+        }
+    }
 fun cambiar_valores(datoString: String):String{
-    val datoDouble = datoString.toDouble() // Convierte el String a Double
+    val datoDouble = datoString.toDouble()
     val datoInt = datoDouble.toInt()
     return datoInt.toString()
 
@@ -2192,6 +2216,51 @@ fun cambiar_valores(datoString: String):String{
             }
         }
     }
+
+    //Usuario Pesos
+    private val _tablaUsuarioPesosResult = MutableStateFlow<Result<PesosGraphResult>?>(null)
+    val tablaUsuarioPesos = _tablaUsuarioPesosResult.asStateFlow()
+    fun setTablaUsuarioPesos(result: Result<PesosGraphResult>?) {
+        _tablaUsuarioPesosResult.value = result
+    }
+    private val _tablaUsuarioPesoslist = MutableStateFlow<List<Float>?>(null)
+    val tablaUsuarioPesoslist = _tablaUsuarioPesoslist
+    fun setTablaUsuarioPesoslist(list: List<Float>?) {
+        _tablaUsuarioPesoslist.value = list
+    }
+
+    fun leertablaPesos(user: PesosGraph) {
+        _tablaUsuarioPesosResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.jalarpesos(jwtToken.value,user)
+                _tablaUsuarioPesoslist.value=response.pesos
+                _tablaUsuarioPesosResult.value = Result.success(response)
+            } catch(e: Exception){
+                _tablaUsuarioPesosResult.value =Result.failure(e)
+            }
+        }
+    }
+
+    //Modificar Pesos
+    private val _editarPesoResult = MutableStateFlow<Result<ModificarPesoResult>?>(null)
+    val editarPesoResult = _editarPesoResult.asStateFlow()
+    fun setEditarPesoResult(result: Result<ModificarPesoResult>?) {
+        _editarPesoResult.value = result
+    }
+
+    fun editarPeso(user: ModifcarPeso) {
+        _editarPesoResult.value = null
+        viewModelScope.launch {
+            try{
+                val response = serviceApi.modificarpeso(jwtToken.value,user)
+                _editarPesoResult.value=Result.success(response)
+            } catch(e: Exception){
+                _editarPesoResult.value =Result.failure(e)
+            }
+        }
+    }
+
 
 
 

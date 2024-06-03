@@ -36,6 +36,10 @@ import com.example.doccare_tracker.model.Graphs.Ansiedad.SintomasResult
 import com.example.doccare_tracker.model.Graphs.DataGraph
 import com.example.doccare_tracker.model.Graphs.Pastillas.MedicamentosResult
 import com.example.doccare_tracker.model.Graphs.Pastillas.TiempoPastillasResult
+import com.example.doccare_tracker.model.Graphs.Pesos.ModifcarPeso
+import com.example.doccare_tracker.model.Graphs.Pesos.ModificarPesoResult
+import com.example.doccare_tracker.model.Graphs.Pesos.PesosGraph
+import com.example.doccare_tracker.model.Graphs.Pesos.PesosGraphResult
 import com.example.doccare_tracker.model.Graphs.Presion.DiastolicasResult
 import com.example.doccare_tracker.model.Graphs.Presion.SistolicasResult
 import com.example.doccare_tracker.model.Graphs.Sueño.HorasResult
@@ -355,6 +359,14 @@ interface UserServiceApi {
 
     @POST("/data/presion/diastolica")
     suspend fun diastolicaPresion(@Header("auth") token: String?, @Body user: DataGraph) : DiastolicasResult
+
+
+    //PesosGraph
+    @POST("/Users/usuarios/pesos")
+    suspend fun jalarpesos(@Header("auth") token: String?, @Body user: PesosGraph) : PesosGraphResult
+
+    @POST("/Users/usuarios/modificarpeso")
+    suspend fun modificarpeso(@Header("auth") token: String?, @Body user: ModifcarPeso) : ModificarPesoResult
 
 
     //Tablas

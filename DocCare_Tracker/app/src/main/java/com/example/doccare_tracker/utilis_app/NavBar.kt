@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.AutoGraph
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AlertDialog
@@ -36,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.doccare_tracker.model.Graphs.Pesos.PesosGraph
 import com.example.ejemplosapis.viewModel.AppViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,6 +49,8 @@ fun BarraNavegacion(navController: NavHostController, viewModel: AppViewModel) {
     val usuario by viewModel.usuario_id.collectAsState()
     val inforespuesta by viewModel.leerUsuarioResult.collectAsState()
     var showyDialog = remember { mutableStateOf(false) }
+
+    val pesosrespuesta by viewModel.tablaUsuarioPesos.collectAsState()
 
     Box(
         modifier = Modifier
@@ -75,6 +79,13 @@ fun BarraNavegacion(navController: NavHostController, viewModel: AppViewModel) {
                     IconButton(onClick = { navController.navigate(route = AppScreens.iniciouser.route)}) { // Cambiar el estado al hacer clic en "Salida"
                         Icon(Icons.Default.DateRange, contentDescription = "Inicio")
                     }
+                    IconButton(onClick = {
+                        viewModel.jalarinformacionusuarios2(usuario)
+                        viewModel.leertablaPesos(PesosGraph(usuario_id = usuario))
+
+                    }) { // Cambiar el estado al hacer clic en "Salida"
+                        Icon(Icons.Default.AutoGraph, contentDescription = "Datos")
+                    }
                 }
             }
         )
@@ -91,6 +102,17 @@ fun BarraNavegacion(navController: NavHostController, viewModel: AppViewModel) {
                 if (result.isSuccess) {
 
                     navController.navigate(route = AppScreens.InfoPersonalUser.route)
+                } else {
+                    showyDialog.value = true
+                }
+            }
+        }
+
+        pesosrespuesta?.let { result ->
+            LaunchedEffect(result) {
+                if (result.isSuccess) {
+
+                    navController.navigate(route = AppScreens.GraphsData.route)
                 } else {
                     showyDialog.value = true
                 }

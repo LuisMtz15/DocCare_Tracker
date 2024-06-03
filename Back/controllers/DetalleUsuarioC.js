@@ -1,4 +1,4 @@
-const { User, Sexo, DetalleUsuario} = require('../models/User');
+const { User, Sexo, DetalleUsuario, Pesos} = require('../models/User');
 
 exports.registrarDetalleUsuario = async (req, res) => {
   try {
@@ -27,6 +27,12 @@ exports.registrarDetalleUsuario = async (req, res) => {
       return res.status(400).json({ error: 'Ya existe un detalle de usuario registrado para este usuario' });
     }
 
+    //Agregar peso a mi tabla de pesos
+    const pesoNuevo = await Pesos.create({
+      usuario_id,
+      peso
+    });
+
     const newDetalleUsuario = await DetalleUsuario.create({
       usuario_id,
       altura,
@@ -36,7 +42,7 @@ exports.registrarDetalleUsuario = async (req, res) => {
       sexo_id: sexoExistente.id
     });
 
-    // Enviar respuesta de "Registro Completo"
+
     res.status(201).json({ message: 'Registro Completo'});
   } catch (error) {
     res.status(400).json({ error: error.message });

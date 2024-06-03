@@ -24,6 +24,7 @@ sealed class AppScreens(val route:String){
     object InfoPersonalUser:AppScreens("info_personal_user")
     object resumenUser:AppScreens("resumen_user")
     object ModfiicarInfoUser:AppScreens("modificar_info_user")
+    object GraphsData:AppScreens("graficas_data")
 
     //Procesos Usuario
 
@@ -33,6 +34,7 @@ sealed class AppScreens(val route:String){
     object Sueño:AppScreens("Sueño_user")
     object Pastillas:AppScreens("Pastillas_user")
     object Presion:AppScreens("Presion_user")
+    object ModificarPeso:AppScreens("modificar_peso")
 
     //Procesos Individuales Alimentos
 

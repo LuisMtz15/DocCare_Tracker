@@ -39,13 +39,11 @@ fun screen_personalUser(navController: NavHostController, viewModel: AppViewMode
     val peso = remember { mutableStateOf("") }
     val circunferencias = remember { mutableStateOf("") }
     val selectedGender = remember { mutableStateOf("Masculino") }
-    val signupResult by viewModel.registrarUsuarioResult.collectAsState()
     val detalleUsuarioResult by viewModel.registrarDetalleUsuarioResult.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val clave = remember { mutableStateOf("")}
     val usuario_id = viewModel.usuario_id
     var showyDialog = remember { mutableStateOf(false) }
-    var showDialog_cons = remember { mutableStateOf(false) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -76,7 +74,7 @@ fun screen_personalUser(navController: NavHostController, viewModel: AppViewMode
                         labelId = "Altura",
                         enabled = true,
                         isSingleLine = true,
-                        keyboardType = KeyboardType.Number,)
+                        keyboardType = KeyboardType.Decimal,)
 
                     Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 }
@@ -88,7 +86,7 @@ fun screen_personalUser(navController: NavHostController, viewModel: AppViewMode
                         labelId = "Peso",
                         enabled = true,
                         isSingleLine = true,
-                        keyboardType = KeyboardType.Number,)
+                        keyboardType = KeyboardType.Decimal,)
 
                     Spacer(modifier = Modifier.padding(bottom = 10.dp)) }
 
@@ -99,7 +97,7 @@ fun screen_personalUser(navController: NavHostController, viewModel: AppViewMode
                         labelId = "Circunferencia Abdominal",
                         enabled = true,
                         isSingleLine = true,
-                        keyboardType = KeyboardType.Number,)
+                        keyboardType = KeyboardType.Decimal,)
 
                     Spacer(modifier = Modifier.padding(bottom = 10.dp))}
 
@@ -130,8 +128,8 @@ fun screen_personalUser(navController: NavHostController, viewModel: AppViewMode
                             onClickAction = {
                                 if (altura.value != "" && peso.value != "" && circunferencias.value != "") {
                                     viewModel.registrardetalleUsuario(RegistrarDetalleUsuario(
-                                        altura = altura.value.toInt(), circunferencia_abdominal = circunferencias.value.toInt(), sexo = selectedGender.value,
-                                        peso = peso.value.toInt(), clave_unica = clave.value, usuario_id = usuario_id.value))
+                                        altura = altura.value.toFloat(), circunferencia_abdominal = circunferencias.value.toFloat(), sexo = selectedGender.value,
+                                        peso = peso.value.toFloat(), clave_unica = clave.value, usuario_id = usuario_id.value))
                                 }
                                 else{showyDialog.value = true}
 
