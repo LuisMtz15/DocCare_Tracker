@@ -132,7 +132,8 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                         } else {
                             snackbarHostState.showSnackbar(
                                 message = "No hay datos disponibles",
-                                duration = SnackbarDuration.Short
+                                duration = SnackbarDuration.Short,
+                                actionLabel = "Agregar"
                             )
                             viewModel.setNohayAlimentos(true)
                             navController.navigate(route = AppScreens.Alimentos.route)
@@ -150,7 +151,8 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                         } else {
                             snackbarHostState.showSnackbar(
                                 message = "No hay datos disponibles",
-                                duration = SnackbarDuration.Short
+                                duration = SnackbarDuration.Short,
+                                actionLabel = "Agregar"
                             )
                             viewModel.setNohayActividades(true)
                             navController.navigate(route = AppScreens.Actividad.route)
@@ -168,7 +170,8 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                         } else {
                             snackbarHostState.showSnackbar(
                                 message = "No hay datos disponibles",
-                                duration = SnackbarDuration.Short
+                                duration = SnackbarDuration.Short,
+                                actionLabel = "Agregar"
                             )
                             viewModel.setNohayAnsiedades(true)
                             navController.navigate(route = AppScreens.Ansiedad.route)
@@ -186,7 +189,8 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                         } else {
                             snackbarHostState.showSnackbar(
                                 message = "No hay datos disponibles",
-                                duration = SnackbarDuration.Short
+                                duration = SnackbarDuration.Short,
+                                actionLabel = "Agregar"
                             )
                             viewModel.setNohayPresiones(true)
                             navController.navigate(route = AppScreens.Presion.route)
@@ -204,7 +208,8 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                         } else {
                             snackbarHostState.showSnackbar(
                                 message = "No hay datos disponibles",
-                                duration = SnackbarDuration.Short
+                                duration = SnackbarDuration.Short,
+                                actionLabel = "Agregar"
                             )
                             viewModel.setNohaySuenos(true)
                             navController.navigate(route = AppScreens.Sueño.route)
@@ -222,7 +227,8 @@ fun Inicio_usuario(navController: NavHostController, viewModel: AppViewModel) {
                         } else {
                             snackbarHostState.showSnackbar(
                                 message = "No hay datos disponibles",
-                                duration = SnackbarDuration.Short
+                                duration = SnackbarDuration.Short,
+                                actionLabel = "Agregar"
                             )
                             viewModel.setNohayPastillas(true)
                             navController.navigate(route = AppScreens.Pastillas.route)

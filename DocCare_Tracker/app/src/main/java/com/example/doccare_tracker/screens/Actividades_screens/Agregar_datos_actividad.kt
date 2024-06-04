@@ -119,7 +119,9 @@ fun Agregar_Actividad(navController: NavHostController, viewModel: AppViewModel)
                         .clickable { navController.navigate(route = AppScreens.DudasActividad.route)}
 
                 )
-                Spacer(modifier = Modifier.padding(bottom = 5.dp))
+
+                /*OpcionesSelection(opciones = tipos, color = MyColorPalette.ActividadF,
+                    text = "", selected = tipoSeleccionado)*/
 
                 SliderWithText(palabras = tipos, cP = MyColorPalette.ActividadF,
                     cS = MyColorPalette.ActividadC, sel = tipoSeleccionado)

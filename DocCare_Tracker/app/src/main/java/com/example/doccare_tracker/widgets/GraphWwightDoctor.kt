@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 
 @SuppressLint("DefaultLocale")
 @Composable
-fun WeightGraph(
+fun WeightGraph2(
     weights: List<Float>,
     maxWeight: Float,
     minWeight: Float,
@@ -102,20 +102,20 @@ fun WeightGraph(
         // Mensajes de peso máximo y mínimo
         drawContext.canvas.nativeCanvas.apply {
             val boldPaint = Paint().apply {
-                textSize = 30f
+                textSize = 25f
                 color = android.graphics.Color.BLACK
                 isFakeBoldText = true
             }
             drawText(
                 "${nombre_3}: ${weights[maxDataIndex]} kg",
-                size.width - 300f,
+                size.width - 230f,
                 -60f,
                 boldPaint
             )
             drawText(
                 "${nombre_2}: ${weights[minDataIndex]} kg",
-                size.width - 275f, //
-                -120f, //
+                size.width - 210f, //
+                -100f, //
                 boldPaint
             )
         }
@@ -125,28 +125,28 @@ fun WeightGraph(
             drawText(
                 nombre_1,
                 10f,
-                -130f,
+                -110f,
                 Paint().apply {
                     textSize = 30f
                     color = android.graphics.Color.BLACK
                 }
             )
             val boldPaint = Paint().apply {
-                textSize = 45f
+                textSize = 40f
                 color = android.graphics.Color.BLACK
                 isFakeBoldText = true
             }
             drawText(
                 "${weights.last()} kg",
                 10f,
-                -75f,
+                -60f,
                 boldPaint
             )
         }
     }
 }
 @Composable
-fun WeightScreen(
+fun WeightScreen2(
     weights: List<Float>,
     nombre1: String,
     nombre2: String,
@@ -159,18 +159,18 @@ fun WeightScreen(
         contentAlignment = Alignment.Center
     ) {
         Surface(
-            modifier = Modifier.fillMaxWidth().height(230.dp) // Ajuste de ancho y altura (en ese orden)
+            modifier = Modifier.fillMaxWidth().height(180.dp) // Ajuste de ancho y altura (en ese orden)
                 .shadow(4.dp, RoundedCornerShape(8.dp)),
             shape = RoundedCornerShape(8.dp),
             color = Color.White
         ) {
             if (valueMax != null) {
                 if (valueMin != null) {
-                    WeightGraph(
+                    WeightGraph2(
                         weights = weights,
                         maxWeight = valueMax+10.0f,
                         minWeight = valueMin-10.0f,
-                        modifier = Modifier.padding(bottom = 16.dp, start = 16.dp, end = 16.dp, top = 70.dp),
+                        modifier = Modifier.padding(bottom = 16.dp, start = 16.dp, end = 16.dp, top = 60.dp),
                         nombre_1=nombre1,
                         nombre_2=nombre2,
                         nombre_3= nombre3

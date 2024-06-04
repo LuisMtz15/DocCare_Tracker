@@ -88,9 +88,12 @@ fun Data_Graphs(navController: NavHostController, viewModel: AppViewModel) {
                         valueMin= it.minOrNull(),)
                 }
                 Column(modifier = Modifier.padding(20.dp)) {
-                    Text(text = "IMC: ${IMC}", fontSize = 25.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Índice de Masa Corporal:", fontSize = 25.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.padding(bottom = 20.dp))
-                    Text(text = "RCA: ${RCA}", fontSize = 25.sp, fontWeight = FontWeight.Bold)
+                    IMC_BarraProgreso(imc = IMC)
+                    Text(text = "Índice de Cintura-Altura:", fontSize = 25.sp, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.padding(bottom = 20.dp))
+                    ICA_BarraProgreso(ica = RCA)
                 }
 
             }

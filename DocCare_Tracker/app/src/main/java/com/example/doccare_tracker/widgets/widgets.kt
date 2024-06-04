@@ -551,7 +551,7 @@ fun SliderWithText(
                 sel.value = palabras[sliderValue.toInt()]
             },
             valueRange = 0f..(palabras.size - 1).toFloat(),
-            steps = 80,
+            steps = palabras.size - 2,
             modifier = Modifier.fillMaxWidth(),
             colors = SliderColors(
                 thumbColor = cP, //Bolita
@@ -995,8 +995,6 @@ fun PastillaSelection(selected: MutableState<String>) {
 @Composable
 fun PeriodoSelection(selected: MutableState<String>) {
     Column {
-        Text(text = "¿De qué forma tomas tu medicamento?", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 18.sp))
-        Spacer(modifier = Modifier.padding(bottom = 16.dp))
         Row(verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
@@ -1022,6 +1020,37 @@ fun PeriodoSelection(selected: MutableState<String>) {
 
     }
 }
+
+@Composable
+fun OpcionesSelection(opciones: List<String>,
+                      selected: MutableState<String>,
+                      text: String,
+                      color: Color) {
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 20.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            opciones.forEach { opcion ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(end = 2.dp)
+                ) {
+                    RadioButton(
+                        selected = selected.value == opcion,
+                        onClick = { selected.value = opcion },
+                        colors = RadioButtonDefaults.colors(selectedColor = color)
+                    )
+                    Text(text = opcion)
+                }
+            }
+        }
+    }
+}
+
 
 @Composable
 fun Card_view(

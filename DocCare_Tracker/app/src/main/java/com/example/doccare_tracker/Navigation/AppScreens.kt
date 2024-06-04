@@ -19,6 +19,7 @@ sealed class AppScreens(val route:String){
     object InfoPersonalDoc:AppScreens("info_personal_doc")
     object InfoUsuaroDocSeleccion:AppScreens("info_usuario_doc_seleccion")
     object ModfiicarInfo:AppScreens("modificar_info")
+    object DataUserDoc:AppScreens("Data_User_Doc")
 
     //Inicio Usuario
     object InfoPersonalUser:AppScreens("info_personal_user")

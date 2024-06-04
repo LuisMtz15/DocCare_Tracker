@@ -63,6 +63,9 @@ fun AppNavigation(viewModel: AppViewModel, startDestination: String = AppScreens
         composable(route = AppScreens.ModfiicarInfo.route) {
             Mod_info_doc(navController,viewModel)
         }
+        composable(route = AppScreens.DataUserDoc.route) {
+            Data_user_doc(navController,viewModel)
+        }
 
         //Interfaz de Usuario
 

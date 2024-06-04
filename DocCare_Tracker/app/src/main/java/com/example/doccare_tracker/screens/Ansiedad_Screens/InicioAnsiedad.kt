@@ -40,7 +40,7 @@ fun Inicio_Ansiedad(navController: NavHostController, viewModel: AppViewModel) {
 
 
         Box{
-            BackgroundImageWithText(title = "Ansiedad", modifier = Modifier
+            BackgroundImageWithText(title = "Estado Emocional", modifier = Modifier
                 .padding(top = 126.dp, start = 32.dp)
                 .align(Alignment.TopStart))
         }

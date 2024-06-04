@@ -294,6 +294,7 @@ class AppViewModel (private val serviceApi: UserServiceApi, application: Applica
                 setClave(response.clave)
                 setNombreUsuario(response.nombre)
                 setApellidoUsuario(response.apellidos)
+                setTablaUsuarioPesos(null)
                 if(response.role == "Usuario") {
                     setRole(true)
                 }
