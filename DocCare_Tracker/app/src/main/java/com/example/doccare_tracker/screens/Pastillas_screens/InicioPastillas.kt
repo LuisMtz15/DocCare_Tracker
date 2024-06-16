@@ -67,7 +67,7 @@ fun Inicio_Pastillas(navController: NavHostController, viewModel: AppViewModel) 
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(pastillasMedicamento.value,colores, "Medicamentos")
+                        DonutChartValues(pastillasMedicamento.value,colores, "Medicamentos", "Pastillas")
 
 
                     }

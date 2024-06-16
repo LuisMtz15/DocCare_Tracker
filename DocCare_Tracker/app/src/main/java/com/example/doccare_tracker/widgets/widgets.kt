@@ -1236,15 +1236,15 @@ fun Card_view_Presion(
             ) {
             Row(modifier = Modifier.padding(26.dp), horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically) {
-                Box(modifier = Modifier.weight(2f)) {
+                Box(modifier = Modifier.weight(2.5f)) {
                     Text(text = formatTimeWithoutSeconds(presion.hora ))
                 }
-                Spacer(modifier = Modifier.padding(end = 30.dp))
-                Box(modifier = Modifier.weight(1.5f)) {
+                Spacer(modifier = Modifier.padding(end = 40.dp))
+                Box(modifier = Modifier.weight(2f)) {
                     Text(text = presion.sistolica.toString())
                 }
-                Spacer(modifier = Modifier.padding(end = 40.dp))
-                Box(modifier = Modifier.weight(1f)) {
+                Spacer(modifier = Modifier.padding(end = 30.dp))
+                Box(modifier = Modifier.weight(2f)) {
                     Text(text = presion.diastolica.toString())
                 }
                 Spacer(modifier = Modifier.padding(end = 20.dp))
@@ -1515,15 +1515,15 @@ fun Card_view_Presion_won(
                 Box(modifier = Modifier.weight(2f)) {
                     Text(text = formatTimeWithoutSeconds(presion.hora))
                 }
-                Spacer(modifier = Modifier.padding(end = 30.dp))
+                Spacer(modifier = Modifier.padding(end = 40.dp))
                 Box(modifier = Modifier.weight(1.5f)) {
                     Text(text = presion.sistolica.toString())
                 }
                 Spacer(modifier = Modifier.padding(end = 40.dp))
-                Box(modifier = Modifier.weight(1f)) {
+                Box(modifier = Modifier.weight(1.5f)) {
                     Text(text = presion.diastolica.toString())
                 }
-                Spacer(modifier = Modifier.padding(end = 20.dp))
+                Spacer(modifier = Modifier.padding(end = 40.dp))
                 Box(modifier = Modifier.weight(4.3f)) {
                     Text(text = presion.emocion_presion)
                 }

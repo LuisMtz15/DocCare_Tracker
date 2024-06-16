@@ -87,7 +87,7 @@ fun PantallaPrincipal(
             CustomButton(
                 color = MyColorPalette.SintomasF,
                 colorText = Color.White,
-                buttonText = "Ansiedad",
+                buttonText = "Síntomas",
                 size = 5,
                 onClickAction = { botonSeleccionado = BotonSeleccionado.Ansiedad }
             )
@@ -115,7 +115,7 @@ fun PantallaPrincipal(
             CustomButton(
                 color = MyColorPalette.PresionF,
                 colorText = Color.White,
-                buttonText = "Presion",
+                buttonText = "Presión",
                 size = 5,
                 onClickAction = { botonSeleccionado = BotonSeleccionado.Presion }
             )

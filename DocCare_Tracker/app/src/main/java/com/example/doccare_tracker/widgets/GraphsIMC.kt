@@ -110,11 +110,11 @@ fun IMC_BarraProgreso(imc: Float) {
             maxValue = 40f,
             ranges = listOf(
                 // AREA PARA MODIFICAR VALORES Y LIMITES DE GRAFICA DE ICA, ADEMAS DE COLORES EN HEXADECIMAL
-                ColorRange(0f, 18.5f, Color(0xFF481EFF), "Bajo Peso"),
-                ColorRange(18.5f, 25f, Color(0xFF38D0C0), "Normal"),
-                ColorRange(25f, 30f, Color(0xFFFFFF34), "Sobrepeso"),
-                ColorRange(30f, 35f, Color(0xFFFFAE8A), "Obesidad"),
-                ColorRange(35f, 40f, Color(0xFFC91034), "Obesidad Severa")
+                ColorRange(0f, 18.5f, Color(0xFF5FB7ED), "Bajo Peso"),
+                ColorRange(18.5f, 25f, Color(0xFFA8B844), "Normal"),
+                ColorRange(25f, 30f, Color(0xFFF7CD46), "Sobrepeso"),
+                ColorRange(30f, 35f, Color(0xFFE08538), "Obesidad"),
+                ColorRange(35f, 40f, Color(0xFF851915), "Obesidad Severa")
             ),
             backgroundColor = Color.Transparent,
             indicatorColor = Color.Black,
@@ -136,12 +136,12 @@ fun ICA_BarraProgreso(ica: Float) {
             maxValue = 1f,
             ranges = listOf(
                 // AREA PARA MODIFICAR VALORES Y LIMITES DE GRAFICA DE ICA, ADEMAS DE COLORES EN HEXADECIMAL
-                ColorRange(0f, 0.34f, Color(0xFF481EFF), "Delgadez severa"),
-                ColorRange(0.35f, 0.41f, Color(0xFF38D0C0), "Delgadez leve"),
-                ColorRange(0.42f, 0.48f, Color(0xFFFFFF34), "Peso normal"),
-                ColorRange(0.49f, 0.53f, Color(0xFFFFAE8A), "Sobrepeso"),
-                ColorRange(0.54f, 0.57f, Color(0xFFBC4CF1), "Sobrepeso elevado"),
-                ColorRange(0.58f, 1f, Color(0xFFC91034), "Obesidad mórbida")
+                ColorRange(0f, 0.34f, Color(0xFF5FB7ED), "Delgadez severa"),
+                ColorRange(0.35f, 0.41f, Color(0xFFA8B844), "Delgadez leve"),
+                ColorRange(0.42f, 0.48f, Color(0xFFF7CD46), "Peso normal"),
+                ColorRange(0.49f, 0.53f, Color(0xFFE08538), "Sobrepeso"),
+                ColorRange(0.54f, 0.57f, Color(0xFFD93734), "Sobrepeso elevado"),
+                ColorRange(0.58f, 1f, Color(0xFF851915), "Obesidad mórbida")
             ),
             backgroundColor = Color.Transparent,
             indicatorColor = Color.Black,

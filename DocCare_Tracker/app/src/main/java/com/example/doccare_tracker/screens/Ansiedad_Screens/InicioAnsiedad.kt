@@ -66,7 +66,7 @@ fun Inicio_Ansiedad(navController: NavHostController, viewModel: AppViewModel) {
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(ansiedadSintomas.value,colores, "Intensidades de los síntomas")
+                        DonutChartValues(ansiedadSintomas.value,colores, "Intensidades de los síntomas", "Sintomas")
 
 
                     }

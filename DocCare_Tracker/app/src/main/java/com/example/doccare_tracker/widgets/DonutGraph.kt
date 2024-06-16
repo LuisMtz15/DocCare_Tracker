@@ -16,7 +16,7 @@ import kotlin.math.sin
 
 
 @Composable
-fun DonutChartValues(valuelist: List<String>?, valueColors: List<Color>, text:String) {
+fun DonutChartValues(valuelist: List<String>?, valueColors: List<Color>, text:String, context:String) {
     val portionSizes = valuelist?.distinct()
     val portionLabels = portionSizes
     val portionCounts = portionSizes?.map { size ->
@@ -28,13 +28,19 @@ fun DonutChartValues(valuelist: List<String>?, valueColors: List<Color>, text:St
     val labels = portionLabels
 
     if (valuelist == null) {
-        DonutChart(data = emptyList(), colors = emptyList(), labels = emptyList(), modifier = Modifier.size(100.dp),
-            title = "")
+        DonutChart(
+            data = emptyList(),
+            colors = emptyList(),
+            labels = emptyList(),
+            modifier = Modifier.size(100.dp),
+            title = "",
+            context = context
+        )
     } else {
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
             if (data != null && labels != null) {
                 DonutChart(data = data, colors = colors, labels = labels, modifier = Modifier.size(100.dp),
-                    title = text)
+                    title = text, context=context)
             }
         }
     }
@@ -44,7 +50,14 @@ fun DonutChartValues(valuelist: List<String>?, valueColors: List<Color>, text:St
 
 
 @Composable
-fun DonutChart(data: List<Float>, colors: List<Color>, labels: List<String>, modifier: Modifier = Modifier, title: String) {
+fun DonutChart(
+    data: List<Float>,
+    colors: List<Color>,
+    labels: List<String>,
+    modifier: Modifier = Modifier,
+    title: String,
+    context: String
+) {
     val total = data.sum()
     var startAngle = 0f
     val labelPadding = 0f
@@ -78,9 +91,15 @@ fun DonutChart(data: List<Float>, colors: List<Color>, labels: List<String>, mod
                 x,
                 y,
                 Paint().apply {
-                    color = android.graphics.Color.WHITE
-                    textAlign = Paint.Align.CENTER
-                    textSize = 30f
+                    if (context!="Sintomas"){
+                        color = android.graphics.Color.WHITE
+                        textAlign = Paint.Align.CENTER
+                        textSize = 30f
+                    }else{
+                        color = android.graphics.Color.BLACK
+                        textAlign = Paint.Align.CENTER
+                        textSize = 20f
+                    }
                 }
             )
         }

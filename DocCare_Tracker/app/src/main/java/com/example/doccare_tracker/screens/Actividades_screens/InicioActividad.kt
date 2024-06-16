@@ -68,7 +68,7 @@ fun Inicio_Actividad(navController: NavHostController, viewModel: AppViewModel) 
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(actividadTiposlist.value,colores, "Tipo de actividad más frecuente")
+                        DonutChartValues(actividadTiposlist.value,colores, "Tipo de actividad más frecuente", "Actividad")
                     }
                     Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                     Column(modifier = Modifier

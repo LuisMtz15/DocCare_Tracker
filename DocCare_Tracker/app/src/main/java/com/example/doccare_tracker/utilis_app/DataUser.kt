@@ -261,7 +261,7 @@ fun Presion_user(
             Box() {
                 Text(text = "Diastólica", style = MaterialTheme.typography.titleMedium)
             }
-            Spacer(modifier = Modifier.padding(end = 15.dp))
+            Spacer(modifier = Modifier.padding(end = 25.dp))
             Box() {
                 Text(text = "Sentir", style = MaterialTheme.typography.titleMedium)
             }

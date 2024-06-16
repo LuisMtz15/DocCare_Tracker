@@ -112,7 +112,7 @@ fun screen_inicio(navController: NavHostController, viewModel: AppViewModel) {
 
                     } else {
                         snackbarHostState.showSnackbar(
-                            message = "Error: ${result.exceptionOrNull()?.message}",
+                            message = "Error: Fallo al Iniciar Sesión",
                             duration = SnackbarDuration.Long,
                             actionLabel = "Reintentar"
                         )

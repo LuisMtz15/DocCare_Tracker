@@ -66,7 +66,7 @@ fun Inicio_Presion(navController: NavHostController, viewModel: AppViewModel) {
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(presionsistollica.value,colores, "Registros de PS más frecuentes")
+                        DonutChartValues(presionsistollica.value,colores, "Registros de PS más frecuentes", "Presion")
 
 
                     }
@@ -76,7 +76,7 @@ fun Inicio_Presion(navController: NavHostController, viewModel: AppViewModel) {
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(presiondiastolica.value,colores, "Registros de PD más frecuentes")
+                        DonutChartValues(presiondiastolica.value,colores, "Registros de PD más frecuentes", "Presion")
 
                     }
                 }

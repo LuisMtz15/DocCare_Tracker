@@ -260,7 +260,8 @@ fun Registro_prin(navController: NavHostController, viewModel: AppViewModel) {
                     if (result.isSuccess) {
                         snackbarHostState.showSnackbar(
                             message ="Registro Inicial Completo.",
-                            duration = SnackbarDuration.Short
+                            duration = SnackbarDuration.Short,
+                            actionLabel = "Siguiente"
                         )
                         navController.navigate(route = AppScreens.PersonalUser.route)
                     } else {

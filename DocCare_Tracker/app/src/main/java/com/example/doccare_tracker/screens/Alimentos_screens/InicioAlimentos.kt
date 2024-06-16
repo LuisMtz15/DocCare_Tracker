@@ -67,7 +67,7 @@ fun Inicio_Alimentos(navController: NavHostController, viewModel: AppViewModel) 
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(alimentosPorcioneslist.value,colores,"Porciones de Alimentos")
+                        DonutChartValues(alimentosPorcioneslist.value,colores,"Porciones de Alimentos", "Alimentos")
 
 
                     }

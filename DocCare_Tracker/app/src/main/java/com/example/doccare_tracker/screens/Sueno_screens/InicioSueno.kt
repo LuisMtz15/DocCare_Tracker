@@ -66,7 +66,7 @@ fun Inicio_Sueño(navController: NavHostController, viewModel: AppViewModel) {
                         .height(100.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
-                        DonutChartValues(suenoHoras.value,colores, "Horas en descanso con más frecuencia")
+                        DonutChartValues(suenoHoras.value,colores, "Horas en descanso con más frecuencia", "Sueno")
 
 
                     }
